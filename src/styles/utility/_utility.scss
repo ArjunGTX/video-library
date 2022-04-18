@@ -1,0 +1,208 @@
+@each $property, $map in $utility-map {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $key, $value in $values {
+    @if $prefix == "p" or $prefix == "m" {
+      .#{$prefix}-#{$key} {
+        #{$property}: $value;
+      }
+      .#{$prefix}x-#{$key} {
+        #{$property}-left: $value;
+        #{$property}-right: $value;
+      }
+      .#{$prefix}y-#{$key} {
+        #{$property}-top: $value;
+        #{$property}-bottom: $value;
+      }
+    } @else {
+      .#{$prefix}-#{$key} {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+@each $size, $value in $icon-sizes {
+  .icon-#{$size} {
+    font-size: #{$value};
+  }
+}
+
+@each $dir, $dir-value in $flex-directions {
+  @each $justify, $justify-value in $flex-justify {
+    @each $align, $align-value in $flex-align {
+      .#{$dir}-#{$justify}-#{$align} {
+        @include flex($dir-value, $justify-value, $align-value);
+      }
+    }
+  }
+}
+.f-wrap {
+  flex-wrap: wrap;
+}
+
+@each $color, $value in $background-colors {
+  .hover-#{$color}:hover {
+    background-color: darken($value, 5%);
+    transition: background-color 200ms;
+  }
+}
+
+@each $cursor in $cursors {
+  .cursor-#{$cursor} {
+    cursor: $cursor;
+  }
+}
+.full-page {
+  width: 100vw;
+  height: 100vh;
+}
+.full-width {
+  width: 100%;
+}
+.half-width {
+  width: 50%;
+}
+.full-height {
+  height: 100%;
+}
+.half-height {
+  height: 50%;
+}
+.width-max-content {
+  width: max-content;
+}
+.img-res {
+  max-inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+.bg-res {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.of-hidden {
+  overflow: hidden;
+}
+.of-auto {
+  overflow: auto;
+}
+.ofy-auto {
+  overflow-y: auto;
+}
+.ofx-auto {
+  overflow-x: auto;
+}
+.txt-of-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.display-block {
+  display: block;
+}
+.display-inline {
+  display: inline;
+}
+
+.bd-none {
+  border: 2px solid transparent;
+}
+.bd-light {
+  border: 2px solid $border-light;
+}
+.bd-medium {
+  border: 2px solid $border-medium;
+}
+.bd-primary {
+  border: 2px solid map-get($background-colors, "primary");
+}
+
+.shadow-light {
+  box-shadow: $shadow-light;
+}
+.shadow-medium {
+  box-shadow: $shadow-medium;
+}
+.shadow-dark {
+  box-shadow: $shadow-dark;
+}
+
+.pos-abs {
+  position: absolute;
+}
+.pos-rel {
+  position: relative;
+}
+.pos-fix {
+  position: fixed;
+}
+
+.top-right {
+  top: 1rem;
+  right: 1rem;
+  left: auto;
+}
+.top-left {
+  top: 1rem;
+  left: 1rem;
+  right: auto;
+}
+.bottom-right {
+  top: 100%;
+  right: 1rem;
+  left: auto;
+}
+.bottom-left {
+  top: 100%;
+  left: 1rem;
+  right: auto;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+}
+
+.txt-underline {
+  text-decoration: underline;
+}
+.txt-center {
+  text-align: center;
+}
+.ul-primary {
+  border-bottom: 2px solid map-get($background-colors, "primary") !important;
+}
+.ul-light {
+  border-bottom: 2px solid $border-light;
+}
+.ul-medium {
+  border-bottom: 2px solid $border-medium;
+}
+.ul-none {
+  border-bottom: 2px solid transparent !important;
+}
+
+.z-100 {
+  z-index: 100;
+}
+.z-200 {
+  z-index: 200;
+}
+.z-300 {
+  z-index: 300;
+}
+
+.br-round {
+  border-radius: 50%;
+}

@@ -1,0 +1,156 @@
+$background-colors: (
+  "primary": $primary-main,
+  "primary-light": $primary-light,
+  "secondary": $secondary-main,
+  "secondary-light": $secondary-light,
+  "success": $success-main,
+  "warning": $warning-main,
+  "error": $error-main,
+  "info": $info-main,
+  "light": $text-light,
+  "medium": $text-medium,
+  "dark": $text-dark,
+);
+$text-colors: (
+  "primary": $primary-main,
+  "light": $text-light,
+  "medium": $text-medium,
+  "dark": $text-dark,
+  "disabled": $text-disabled,
+  "success": $success-dark,
+  "warning": $warning-dark,
+  "error": $error-dark,
+  "info": $info-dark,
+);
+
+$font-sizes: (
+  "xs": $base-font-size * 0.75,
+  "sm": $base-font-size,
+  "md": $base-font-size * 1.25,
+  "lg": $base-font-size * 1.5,
+  "xl": $base-font-size * 1.75,
+);
+$font-weights: (
+  "thin": $font-thin,
+  "regular": $font-regular,
+  "medium": $font-medium,
+  "bold": $font-bold,
+);
+$paddings: (
+  "xs": $base-padding,
+  "sm": $base-padding * 2,
+  "md": $base-padding * 3,
+  "lg": $base-padding * 4,
+  "xl": $base-padding * 5,
+);
+$margins: (
+  "xs": $base-margin,
+  "sm": $base-margin * 2,
+  "md": $base-margin * 3,
+  "lg": $base-margin * 4,
+  "xl": $base-margin * 5,
+  "auto": auto,
+);
+$border-radii: (
+  "xs": $base-border-radius,
+  "sm": $base-border-radius * 2,
+  "md": $base-border-radius * 3,
+  "lg": $base-border-radius * 4,
+  "xl": $base-border-radius * 5,
+  "none": 0,
+);
+$utility-map: (
+  "padding": (
+    "prefix": "p",
+    "values": $paddings,
+  ),
+  "padding-left": (
+    "prefix": "pl",
+    "values": $paddings,
+  ),
+  "padding-top": (
+    "prefix": "pt",
+    "values": $paddings,
+  ),
+  "padding-right": (
+    "prefix": "pr",
+    "values": $paddings,
+  ),
+  "padding-bottom": (
+    "prefix": "pb",
+    "values": $paddings,
+  ),
+  "margin": (
+    "prefix": "m",
+    "values": $margins,
+  ),
+  "margin-left": (
+    "prefix": "ml",
+    "values": $margins,
+  ),
+  "margin-top": (
+    "prefix": "mt",
+    "values": $margins,
+  ),
+  "margin-right": (
+    "prefix": "mr",
+    "values": $margins,
+  ),
+  "margin-bottom": (
+    "prefix": "mb",
+    "values": $margins,
+  ),
+  "border-radius": (
+    "prefix": "br",
+    "values": $border-radii,
+  ),
+  "background-color": (
+    "prefix": "bg",
+    "values": $background-colors,
+  ),
+  "color": (
+    "prefix": "txt",
+    "values": $text-colors,
+  ),
+  "font-size": (
+    "prefix": "txt",
+    "values": $font-sizes,
+  ),
+  "font-weight": (
+    "prefix": "font",
+    "values": $font-weights,
+  ),
+);
+
+$icon-sizes: (
+  "xs": $base-icon-size,
+  "sm": $base-icon-size * 1.25,
+  "md": $base-icon-size * 1.5,
+  "lg": $base-icon-size * 1.75,
+  "xl": $base-icon-size * 2,
+);
+$flex-directions: (
+  "fr": row,
+  "fc": column,
+);
+$flex-justify: (
+  "fs": flex-start,
+  "fe": flex-end,
+  "ct": center,
+  "sb": space-between,
+  "sa": space-around,
+  "se": space-evenly,
+);
+$flex-align: (
+  "fs": flex-start,
+  "fe": flex-end,
+  "ct": center,
+  "bl": baseline,
+);
+$break-points: (
+  "xs": $bp-xs,
+  "sm": $bp-sm,
+  "md": $bp-md,
+  "lg": $bp-lg,
+  "xl": $bp-xl,
+);

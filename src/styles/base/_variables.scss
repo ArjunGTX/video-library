@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+//colors
+$primary-main: #be1e50;
+$primary-light: #e0527f;
+
+$secondary-main: #ffffff;
+$secondary-light: #ffffff80;
+
+$error-main: #d62b36;
+$error-dark: #af242d;
+$warning-main: #ffecb5;
+$warning-dark: #664d03;
+$success-main: #81db7b;
+$success-dark: #036318;
+$info-main: #036318;
+$info-dark: #055160;
+
+$text-dark: #000000;
+$text-medium: #505050e3;
+$text-disabled: #40404080;
+$text-light: #ffffff;
+
+$border-light: #d8d8d8ce;
+$border-medium: #0f0f0f50;
+
+
+//fonts
+$font-primary: "Poppins", "Roboto", "Helvetica", "Arial", sans-serif;
+
+$base-font-size: 1.1rem;
+
+$font-thin: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 600;
+
+//shadows
+$shadow-dark: 0px 0px 10px 2px #20202080;
+$shadow-medium: 0px 0px 10px 2px #9b9b9b80;
+$shadow-light: 0px 0px 10px 2px #e7e3e380;
+
+//spacing
+$base-padding: 0.25rem;
+$base-margin: 0.25rem;
+$base-border-radius: 0.25rem;
+
+//icon-size
+$base-icon-size: 1rem;
+
+$base-avatar-sizes: 1.25rem;
+
+//cursor types
+$cursors: pointer, not-allowed, default;
+
+//gradients
+$image-overlay-light: linear-gradient(0deg, #00000010, #00000010);
+$image-overlay-medium: linear-gradient(0deg, #00000020, #00000020);
+
+//media query break points
+$bp-xs: 0px;
+$bp-sm: 320px;
+$bp-md: 680px;
+$bp-lg: 1160px;
+$bp-xl: 1440px;
