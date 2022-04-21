@@ -18,7 +18,7 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Upcoming Bikes",
-    category: "upcoming-bikes",
+    categoryName: "Isle Of Man",
+    category: "isle-of-man",
   },
 ];
