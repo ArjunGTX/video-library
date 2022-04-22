@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Color, Size } from "../model/type";
-import combineClasses from "clsx";
+import clsx from "clsx";
 
 interface Props {
   className?: string;
@@ -26,15 +26,19 @@ export const Button: React.FC<Props> = ({
 
   return (
     <button
-      className={combineClasses(
+      className={clsx(
         "px-lg py-xs br-sm font-medium fr-ct-ct",
         color
-          ? variant === "contained"
-            ? `bg-${color}`
+          ? variant === "plain"
+            ? `txt-${color} hover-medium`
             : variant === "outlined"
-            ? `bd-${color} txt-${color}`
-            : `txt-${color} font-bold`
-          : "bg-primary txt-secondary",
+            ? `bd-${color} txt-${color} hover-${color}-outlined`
+            : `bg-${color} hover-${color} txt-${color}`
+          : variant === "plain"
+          ? "txt-light hover-medium"
+          : variant === "outlined"
+          ? "bd-primary txt-primary hover-primary-outlined"
+          : "bg-primary hover-primary txt-secondary",
         size ? `txt-${size}` : "txt-xs",
         className
       )}

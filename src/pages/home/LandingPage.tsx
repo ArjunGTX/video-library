@@ -1,10 +1,11 @@
 import { Button, Logo } from "../../components";
+import { Path } from "../../util/constant";
 
 export const LandingPage = () => {
   return (
     <div className="full-page bg-secondary fc-fs-fs txt-light landing-page">
       <div className="fr-fe-ct p-xl full-width">
-        <Button className="m-xl hover-primary" size="sm">
+        <Button to={Path.LOGIN} className="m-xl hover-primary" size="sm">
           Login
         </Button>
       </div>
@@ -15,7 +16,7 @@ export const LandingPage = () => {
           minutes of <br /> Motor Cycle{" "}
           <span className="txt-xl txt-primary">Madness!</span>
         </h3>
-        <Button className="mt-xl" size="md">
+        <Button to={Path.VIDEOS} className="mt-xl" size="md">
           Start Watching
         </Button>
       </div>

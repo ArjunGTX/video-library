@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import combineClasses from "clsx";
+import clsx from "clsx";
+import { Path } from "../util/constant";
 
 interface Props {
   className?: string;
@@ -8,8 +9,8 @@ interface Props {
 
 export const Logo: React.FC<Props> = ({ className }) => {
   return (
-    <Link to="/">
-      <div className={combineClasses("logo txt-primary font-bold", className)}>
+    <Link to={Path.HOME}>
+      <div className={clsx("logo txt-primary font-bold", className)}>
         Mad Biker
       </div>
     </Link>

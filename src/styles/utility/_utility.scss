@@ -34,12 +34,17 @@
   }
   .hover-#{$color}:hover {
     @if lightness($value) > 50% {
-      background-color: darken($value, 5%);
+      background-color: darken($value, 10%);
       transition: background-color 300ms;
     } @else {
-      background-color: lighten($value, 5%);
+      background-color: lighten($value, 10%);
       transition: background-color 300ms;
     }
+  }
+  .hover-#{$color}-outlined:hover {
+    background-color: $value;
+    color: map-get($background-colors, "secondary");
+    transition: background-color 300ms;
   }
 }
 .bd-none {
@@ -59,10 +64,13 @@
   flex-wrap: wrap;
 }
 
-@each $color, $value in $background-colors {
-  .hover-#{$color}:hover {
-    background-color: darken($value, 5%);
-    transition: background-color 200ms;
+.grid {
+  display: flex;
+  align-items: center;
+}
+@for $i from 1 to 13 {
+  .grid-col-#{$i} {
+    flex: 0 0 calc($i / 12 * 100%);
   }
 }
 
