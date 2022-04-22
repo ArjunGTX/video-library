@@ -58,16 +58,6 @@
   flex-wrap: wrap;
 }
 
-.grid {
-  display: flex;
-  align-items: center;
-}
-@for $i from 1 to 13 {
-  .grid-col-#{$i} {
-    flex: 0 0 calc($i / 12 * 100%);
-  }
-}
-
 @each $cursor in $cursors {
   .cursor-#{$cursor} {
     cursor: $cursor;
