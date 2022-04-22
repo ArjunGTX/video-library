@@ -1,0 +1,26 @@
+import { Playlist } from "./playlist";
+import { Video } from "./video";
+
+export interface User {
+  id: string;
+  _id: string;
+  createdAt: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  history: Video[];
+  likes: Video[];
+  watchlater: Video[];
+  playlists: Playlist[];
+  updatedAt: string;
+}
+
+export interface LoginResponse {
+  encodedToken: string;
+  foundUser: User;
+}
+
+export interface SignUpResponse {
+  encodedToken: string;
+  createdUser: User;
+}
