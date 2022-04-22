@@ -1,6 +1,13 @@
 import { Playlist } from "./playlist";
 import { Video } from "./video";
 
+export interface Auth {
+  isLoggedIn: boolean;
+  firstName: string;
+  lastName: string;
+  userId: string;
+}
+
 export interface User {
   id: string;
   _id: string;

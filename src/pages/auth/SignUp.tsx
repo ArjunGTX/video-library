@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Button, Logo, TextInput } from "../../components";
 import { Path } from "../../util/constant";
 import * as api from "../../model/api";
 import * as validate from "../../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useAuth } from "../../context";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
@@ -23,6 +29,12 @@ export const SignUp = () => {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+    if (auth?.isLoggedIn) {
+      navigate(-1);
+    }
+  }, []);
+
   const signUpRequest = async () => {
     const { isValid, errors } = validate.signUp(inputs, inputErrors);
     if (!isValid) {
@@ -31,13 +43,20 @@ export const SignUp = () => {
     }
     setLoading(true);
     try {
-      const { data } = await api.signUp(
+      const { data, status } = await api.signUp(
         inputs.firstName,
         inputs.lastName,
         inputs.email,
         inputs.password
       );
-      console.log(data);
+      if (status !== 201) return;
+      setAuth({
+        isLoggedIn: true,
+        firstName: data.createdUser.firstName,
+        lastName: data.createdUser.lastName,
+        userId: data.createdUser._id,
+      });
+      navigate(Path.HOME);
     } catch (error) {
       console.log(error);
     } finally {
@@ -172,15 +191,21 @@ export const SignUp = () => {
               )}
             </div>
             <Button className="my-sm full-width mx-auto">Sign Up</Button>
-            <Button
-              type="button"
+            <Link
               to={Path.LOGIN}
-              variant="plain"
-              color="primary"
-              className="full-width mx-auto mt-sm txt-underline"
+              state={{
+                from: pathname,
+              }}
             >
-              Already Have an Account
-            </Button>
+              <Button
+                type="button"
+                variant="plain"
+                color="primary"
+                className="full-width mx-auto mt-sm txt-underline"
+              >
+                Already Have an Account
+              </Button>
+            </Link>
           </div>
         </form>
       </div>

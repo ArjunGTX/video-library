@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, Logo, TextInput } from "../../components";
 import { GuestUser, Path } from "../../util/constant";
 import * as api from "../../model/api";
 import * as validate from "../../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useAuth } from "../../context";
+import { To, useLocation, useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as { from: To };
+  const redirectTo = state?.from
+    ? state.from === Path.SIGN_UP
+      ? Path.HOME
+      : state.from
+    : null;
+
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
@@ -16,6 +28,12 @@ export const Login = () => {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (auth?.isLoggedIn) {
+      navigate(-1);
+    }
+  }, []);
 
   const loginRequest = async (email: string, password: string) => {
     const { isValid, errors } = validate.login(
@@ -28,8 +46,21 @@ export const Login = () => {
     }
     setLoading(true);
     try {
-      const { data } = await api.login(email, password);
-      console.log(data);
+      const { data, status } = await api.login(email, password);
+      if (status !== 200) return;
+      setAuth({
+        isLoggedIn: true,
+        firstName: data.foundUser.firstName,
+        lastName: data.foundUser.lastName,
+        userId: data.foundUser._id,
+      });
+      if (redirectTo) {
+        navigate(redirectTo, {
+          replace: true,
+        });
+      } else {
+        navigate(-1);
+      }
     } catch (error) {
       console.log(error);
     } finally {
