@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken } from "../../util";
+import { getAccessToken } from "../../util/helper";
 
 const createConfig = (token: string) => ({
   headers: {

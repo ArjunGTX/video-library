@@ -1,31 +1,127 @@
-import { Button, Logo, TextInput } from "../../components";
-import { Path } from "../../util/constant";
+import React, { useState } from "react";
+import { Alert, Button, Logo, TextInput } from "../../components";
+import { GuestUser, Path } from "../../util/constant";
+import * as api from "../../model/api";
+import * as validate from "../../util/validator";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  const [inputErrors, setInputErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const loginRequest = async (email: string, password: string) => {
+    const { isValid, errors } = validate.login(
+      { email, password },
+      inputErrors
+    );
+    if (!isValid) {
+      setInputErrors(errors);
+      return;
+    }
+    setLoading(true);
+    try {
+      const { data } = await api.login(email, password);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    loginRequest(inputs.email, inputs.password);
+  };
+
+  const handleGuestLogin = () =>
+    loginRequest(GuestUser.EMAIL, GuestUser.PASSWORD);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs((inputs) => ({
+      ...inputs,
+      [e.target.id]: e.target.value,
+    }));
+    setInputErrors((errors) => ({
+      ...errors,
+      [e.target.id]: "",
+    }));
+  };
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
   return (
     <div className="full-page bg-secondary fc-fs-fs txt-light">
       <div className="fr-fs-ct full-width p-xl pos-abs">
         <Logo className="m-xl" />
       </div>
       <div className="full-width full-height fr-ct-ct">
-        <div className="br-sm shadow-medium bg-secondary-light p-xl auth-form">
+        <form
+          onSubmit={handleLogin}
+          className="br-sm shadow-medium bg-secondary-light p-xl auth-form"
+        >
           <div className="fr-sb-ct pt-xs px-xl">
             <h2 className="txt-primary font-medium">Login</h2>
           </div>
           <div className="full-width p-xl fc-fs-fs">
-            <TextInput type="text" placeholder="Email" className="my-sm" />
-            <TextInput
-              type="password"
-              placeholder="Password"
-              className="my-sm"
-            />
-            <Button variant="plain" className="txt-underline txt-xs my-sm">
+            <div className="full-width fc-fs-fs">
+              <TextInput
+                type="text"
+                placeholder="Email"
+                className="my-sm"
+                value={inputs.email}
+                onChange={handleInputChange}
+                id="email"
+              />
+              {inputErrors.email && (
+                <Alert message={inputErrors.email} className="mt-xs" />
+              )}
+            </div>
+            <div className="full-width fc-fs-fs">
+              <TextInput
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="my-sm"
+                value={inputs.password}
+                onChange={handleInputChange}
+                id="password"
+              >
+                <button
+                  type="button"
+                  className="txt-light fr-ct-ct"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <AiOutlineEye className="txt-sm" />
+                  ) : (
+                    <AiOutlineEyeInvisible className=" txt-sm" />
+                  )}
+                </button>
+              </TextInput>
+              {inputErrors.password && (
+                <Alert message={inputErrors.password} className="mt-xs" />
+              )}
+            </div>
+            <Button
+              type="button"
+              variant="plain"
+              className="txt-underline txt-xs my-sm"
+            >
               Forgot Password?
             </Button>
             <Button className="full-width mx-auto my-sm">Login</Button>
-            <div className="my-sm full-width fr-sb-ct">
+            <div className="mt-sm full-width fr-sb-ct">
               <div className="half-width fr-ct-ct pr-sm">
                 <Button
+                  type="button"
                   to={Path.SIGN_UP}
                   variant="outlined"
                   className="full-width"
@@ -34,13 +130,18 @@ export const Login = () => {
                 </Button>
               </div>
               <div className="half-width fr-ct-ct pl-sm">
-                <Button variant="outlined" className="full-width">
+                <Button
+                  onClick={handleGuestLogin}
+                  type="button"
+                  variant="outlined"
+                  className="full-width"
+                >
                   Guest Login
                 </Button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

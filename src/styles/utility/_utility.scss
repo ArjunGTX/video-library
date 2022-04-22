@@ -22,12 +22,6 @@
   }
 }
 
-@each $size, $value in $icon-sizes {
-  .icon-#{$size} {
-    font-size: #{$value};
-  }
-}
-
 @each $color, $value in $background-colors {
   .bd-#{$color} {
     border: 2px solid $value;

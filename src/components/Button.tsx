@@ -11,6 +11,7 @@ interface Props {
   to?: string;
   color?: Color;
   size?: Size;
+  type?: "submit" | "button" | "reset";
 }
 
 export const Button: React.FC<Props> = ({
@@ -21,11 +22,13 @@ export const Button: React.FC<Props> = ({
   to,
   color,
   size,
+  type,
 }) => {
   const navigate = useNavigate();
 
   return (
     <button
+      type={type}
       className={clsx(
         "px-lg py-xs br-sm font-medium fr-ct-ct",
         color
