@@ -11,7 +11,7 @@ export const Logo: React.FC<Props> = ({ className }) => {
   return (
     <Link to={Path.HOME}>
       <div className={clsx("logo txt-primary font-bold", className)}>
-        Mad Biker
+        BikaHolic
       </div>
     </Link>
   );

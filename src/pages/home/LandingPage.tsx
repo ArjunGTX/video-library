@@ -9,9 +9,9 @@ export const LandingPage = () => {
           Login
         </Button>
       </div>
-      <div className="full-width full-height fc-fs-ct mt-xl p-xl">
-        <Logo />
-        <h3 className="my-lg txt-lg txt-center font-medium">
+      <div className="full-width full-height pos fc-fs-ct mt-xl p-xl">
+        <Logo className="mb-xl" />
+        <h3 className="my-xl txt-lg txt-center font-medium">
           A collection of <span className="txt-xl txt-primary">120+</span>{" "}
           minutes of <br /> Motor Cycle{" "}
           <span className="txt-xl txt-primary">Madness!</span>
