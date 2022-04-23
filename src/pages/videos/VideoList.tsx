@@ -1,34 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SkeletonVideoCard, VideoCard } from "../../components";
 import { useVideos } from "../../context/VideoContext";
 import { CategoryList } from "./CategoryList";
-import * as api from "../../model/api";
 import { getArray } from "../../util/helper";
 import clsx from "clsx";
 
-export const Videos = () => {
-  const { videos, setVideos } = useVideos();
-
-  const [loading, setLoading] = useState(false);
+export const VideoList = () => {
+  const { videos, loading, syncVideosWithServer } = useVideos();
 
   useEffect(() => {
     if (videos.length === 0) {
-      getVideosRequest();
+      syncVideosWithServer();
     }
-  }, []);
-
-  const getVideosRequest = async () => {
-    setLoading(true);
-    try {
-      const { status, data } = await api.getVideos();
-      if (status !== 200) return;
-      setVideos(data.videos);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setTimeout(() => setLoading(false), 1500);
-    }
-  };
+  }, [videos]);
 
   return (
     <div className="full-width full-height of-hidden">

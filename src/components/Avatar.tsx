@@ -4,7 +4,7 @@ import { Size } from "../model/type";
 
 interface Props {
   className?: string;
-  name: string;
+  name?: string;
   imageSrc?: string;
   alt?: string;
   size?: Size;
@@ -28,7 +28,7 @@ export const Avatar: React.FC<Props> = ({
       {imageSrc ? (
         <img src={imageSrc} alt={alt} className="img-res" />
       ) : (
-        name[0].toUpperCase()
+        name && name[0].toUpperCase()
       )}
     </div>
   );

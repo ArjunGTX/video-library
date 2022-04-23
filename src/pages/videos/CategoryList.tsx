@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, SkeletonButton } from "../../components";
 import { useCategories } from "../../context";
-import * as api from "../../model/api";
+
 import { getArray } from "../../util/helper";
 
 interface Props {
@@ -10,27 +10,13 @@ interface Props {
 }
 
 export const CategoryList: React.FC<Props> = ({ className }) => {
-  const { categories, setCategories } = useCategories();
-  const [loading, setLoading] = useState(false);
+  const { categories, loading, syncCategoriesWithServer } = useCategories();
 
   useEffect(() => {
     if (categories.length === 0) {
-      getCategoriesRequest();
+      syncCategoriesWithServer();
     }
   }, []);
-
-  const getCategoriesRequest = async () => {
-    setLoading(true);
-    try {
-      const { status, data } = await api.getCategories();
-      if (status !== 200) return;
-      setCategories(data.categories);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setTimeout(() => setLoading(false), 1500);
-    }
-  };
 
   return (
     <div

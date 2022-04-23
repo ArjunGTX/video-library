@@ -1,2 +1,3 @@
-export * from "./Videos";
+export * from "./VideoList";
 export * from "./CategoryList";
+export * from "./VideoDetails";

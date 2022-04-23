@@ -1,6 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { PageWrapper } from "./components";
-import { LandingPage, Login, PageNotFound, SignUp, Videos } from "./pages";
+import {
+  LandingPage,
+  Login,
+  PageNotFound,
+  SignUp,
+  VideoDetails,
+  VideoList,
+} from "./pages";
 import { Path } from "./util/constant";
 
 export const App = () => {
@@ -13,7 +20,15 @@ export const App = () => {
         path={Path.VIDEOS}
         element={
           <PageWrapper>
-            <Videos />
+            <VideoList />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={`${Path.VIDEOS}/:videoId`}
+        element={
+          <PageWrapper>
+            <VideoDetails />
           </PageWrapper>
         }
       />

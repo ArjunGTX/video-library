@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Video } from "../model/type";
 import { Path } from "../util/constant";
 import { getImageUrl } from "../util/helper";
@@ -9,14 +9,16 @@ import { Avatar } from "./Avatar";
 interface Props {
   className?: string;
   video: Video;
+  nowPlaying?: boolean;
 }
 
 export const VideoCard: React.FC<Props> = ({ className, video }) => {
+  const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState(getImageUrl(video._id));
 
   return (
-    <Link
-      to={`${Path.VIDEOS}/${video._id}`}
+    <div
+      onClick={() => navigate(`${Path.VIDEOS}/${video._id}`)}
       onMouseOver={() => setImageUrl(video.thumbnail)}
       onMouseLeave={() => setImageUrl(getImageUrl(video._id))}
       className={clsx(
@@ -24,7 +26,7 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
         className
       )}
     >
-      <h5 className="txt-white">{video.title}</h5>
+      <h5>{video.title}</h5>
       <div className="full-width full-height my-md of-hidden br-xs">
         <img src={imageUrl} alt={video.title} className="img-res" />
       </div>
@@ -32,6 +34,6 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
         <Avatar name={video.creator} imageSrc={video.creatorImage} />
         <p className="ml-md">{video.creator}</p>
       </div>
-    </Link>
+    </div>
   );
 };

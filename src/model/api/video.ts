@@ -19,7 +19,10 @@ export const getVideos = async () =>
   await api.axiosGet<ListVideoResponse>(`/api/videos`, false);
 
 export const getVideoInfo = async (videoId: string) =>
-  await api.axiosGet<GetVideoInfoResponse>(`/api/videos/${videoId}`, false);
+  await api.axiosGet<GetVideoInfoResponse>(
+    `/api/user/videos/${videoId}`,
+    false
+  );
 
 export const getLikes = async () =>
   await api.axiosGet<ListLikeResponse>(`/api/user/likes`, true);

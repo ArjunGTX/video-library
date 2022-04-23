@@ -108,7 +108,7 @@ export const videos = [
     thumbnail: "assets/images/thumbnail/adrenaline/street-tiple.webp",
   },
   {
-    _id: "SZqk-O-nkjo",
+    _id: "PoEMtsOtpg8",
     title: "Pure Adrenaline On Suzuki Gsx-R Fastest",
     description:
       "Taking a dose of pure adrenaline on my Suzuki Gsx-r 1000 K9 after an abstention of 2 months, i was a little bit cautious with my driving because of the street's cold temperature  and also of the street surface, in some places was wet.Video was shoot with GoPro Hero 4 Black and a Gyro Mount.",

@@ -4,7 +4,6 @@ import { FiLogOut } from "react-icons/fi";
 import { Logo } from "./Logo";
 import { TextInput } from "./TextInput";
 import { Avatar } from "./Avatar";
-import { Button } from "./Button";
 
 interface Props {
   className?: string;
@@ -31,7 +30,7 @@ export const Header: React.FC<Props> = ({ className }) => {
           <FiLogOut />
         </button>
         <button className="txt-light mx-sm fr-ct-ct">
-          <Avatar name="john" />
+          <Avatar />
         </button>
       </div>
     </header>
