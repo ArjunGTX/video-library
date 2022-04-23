@@ -1,5 +1,9 @@
-import React from "react";
+import { CategoryList } from "./CategoryList";
 
 export const Videos = () => {
-  return <div></div>;
+  return (
+    <div className="full-width full-height of-hidden">
+      <CategoryList />
+    </div>
+  );
 };

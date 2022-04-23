@@ -11,13 +11,13 @@ export const PageWrapper: React.FC<Props> = ({ children, className }) => {
   return (
     <div
       className={clsx(
-        "full-page pos-rel fc-fs-fs bg-secondary of-hidden",
+        "full-page pos-rel fc-fs-fs bg-secondary of-hidden page-wrapper",
         className
       )}
     >
       <Header />
       <SideNav />
-      <main className="pos-abs fc-fs-fs p-xl">{children}</main>
+      <main className="pos-fix fc-fs-fs of-hidden">{children}</main>
     </div>
   );
 };

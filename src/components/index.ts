@@ -5,3 +5,5 @@ export * from "./Alert";
 export * from "./PageWrapper";
 export * from "./Header";
 export * from "./Avatar";
+export * from "./SideNav";
+export * from "./VideoCard";

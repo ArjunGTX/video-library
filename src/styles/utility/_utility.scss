@@ -40,6 +40,10 @@
     color: map-get($background-colors, "secondary");
     transition: background-color 300ms;
   }
+  .hover-icon-#{$color}:hover {
+    color: $value;
+    transition: color 300ms;
+  }
 }
 .bd-none {
   border: 2px solid transparent;
@@ -203,7 +207,9 @@
 .z-300 {
   z-index: 300;
 }
-
 .br-round {
   border-radius: 50%;
+}
+.txt-no-wrap {
+  white-space: nowrap;
 }

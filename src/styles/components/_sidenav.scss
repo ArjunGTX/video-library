@@ -9,8 +9,9 @@
 
 @media screen and (min-width: map-get($break-points, "md")) {
   .side-nav {
-    top: 5rem;
+    top: 6rem;
     right: auto;
+    width: 9rem;
     flex-direction: column;
   }
 }

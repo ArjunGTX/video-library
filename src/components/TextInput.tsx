@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 
 interface Props {
   className?: string;
@@ -32,16 +32,21 @@ export const TextInput: React.FC<Props> = ({
   onChange,
   onClick,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <div
       onClick={onClick}
       className={clsx(
-        "py-sm px-xl txt-xs br-sm bd-light full-width fr-fs-ct",
+        "py-sm px-xl txt-xs br-sm full-width fr-fs-ct",
         disabled && "txt-disabled",
+        isFocused ? "bd-primary" : "bd-light",
         className
       )}
     >
       <input
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         type={type}
         value={value}
         onChange={onChange}
