@@ -1,0 +1,15 @@
+header {
+  top: 0;
+  left: 0;
+  & .menu-btn {
+    display: none;
+  }
+}
+
+@media screen and (min-width: map-get($break-points, "md")) {
+  header {
+    & .menu-btn {
+      display: flex;
+    }
+  }
+}

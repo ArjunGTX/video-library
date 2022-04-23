@@ -58,6 +58,13 @@
   flex-wrap: wrap;
 }
 
+@each $size, $value in $avatar-sizes {
+  .avatar-#{$size} {
+    width: $value;
+    height: $value;
+  }
+}
+
 @each $cursor in $cursors {
   .cursor-#{$cursor} {
     cursor: $cursor;
@@ -138,7 +145,6 @@
 .pos-fix {
   position: fixed;
 }
-
 .top-right {
   top: 1rem;
   right: 1rem;
@@ -163,12 +169,10 @@
 .sticky-top {
   position: sticky;
   top: 0;
-  z-index: 20;
 }
 .sticky-bottom {
   position: sticky;
   bottom: 0;
-  z-index: 20;
 }
 
 .txt-underline {

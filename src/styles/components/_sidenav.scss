@@ -1,0 +1,16 @@
+.side-nav {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@media screen and (min-width: map-get($break-points, "md")) {
+  .side-nav {
+    top: 5rem;
+    right: auto;
+    flex-direction: column;
+  }
+}
