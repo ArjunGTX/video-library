@@ -22,10 +22,27 @@
   }
 }
 
-@each $size, $value in $icon-sizes {
-  .icon-#{$size} {
-    font-size: #{$value};
+@each $color, $value in $background-colors {
+  .bd-#{$color} {
+    border: 2px solid $value;
   }
+  .hover-#{$color}:hover {
+    @if lightness($value) > 50% {
+      background-color: darken($value, 10%);
+      transition: background-color 300ms;
+    } @else {
+      background-color: lighten($value, 10%);
+      transition: background-color 300ms;
+    }
+  }
+  .hover-#{$color}-outlined:hover {
+    background-color: $value;
+    color: map-get($background-colors, "secondary");
+    transition: background-color 300ms;
+  }
+}
+.bd-none {
+  border: 2px solid transparent;
 }
 
 @each $dir, $dir-value in $flex-directions {
@@ -39,13 +56,6 @@
 }
 .f-wrap {
   flex-wrap: wrap;
-}
-
-@each $color, $value in $background-colors {
-  .hover-#{$color}:hover {
-    background-color: darken($value, 5%);
-    transition: background-color 200ms;
-  }
 }
 
 @each $cursor in $cursors {
@@ -107,19 +117,6 @@
 }
 .display-inline {
   display: inline;
-}
-
-.bd-none {
-  border: 2px solid transparent;
-}
-.bd-light {
-  border: 2px solid $border-light;
-}
-.bd-medium {
-  border: 2px solid $border-medium;
-}
-.bd-primary {
-  border: 2px solid map-get($background-colors, "primary");
 }
 
 .shadow-light {

@@ -121,14 +121,6 @@ $utility-map: (
     "values": $font-weights,
   ),
 );
-
-$icon-sizes: (
-  "xs": $base-icon-size,
-  "sm": $base-icon-size * 1.25,
-  "md": $base-icon-size * 1.5,
-  "lg": $base-icon-size * 1.75,
-  "xl": $base-icon-size * 2,
-);
 $flex-directions: (
   "fr": row,
   "fc": column,
