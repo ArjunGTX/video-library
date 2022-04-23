@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import { AuthProvider, CategoryProvider } from "./context";
+import { VideoProvider } from "./context/VideoContext";
 import { makeServer } from "./server";
 import "./styles/index.scss";
 
@@ -16,7 +17,9 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <CategoryProvider>
-          <App />
+          <VideoProvider>
+            <App />
+          </VideoProvider>
         </CategoryProvider>
       </AuthProvider>
     </BrowserRouter>

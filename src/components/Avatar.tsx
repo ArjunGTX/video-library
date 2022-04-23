@@ -20,7 +20,7 @@ export const Avatar: React.FC<Props> = ({
   return (
     <div
       className={clsx(
-        "br-round bg-medium p-sm of-hidden fr-ct-ct",
+        "br-round bg-medium of-hidden fr-ct-ct",
         size ? `avatar-${size}` : "avatar-md",
         className
       )}

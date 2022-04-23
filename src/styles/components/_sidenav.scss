@@ -2,9 +2,12 @@
   bottom: 0;
   left: 0;
   right: 0;
+  height: 8rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 @media screen and (min-width: map-get($break-points, "md")) {
@@ -12,6 +15,7 @@
     top: 6rem;
     right: auto;
     width: 9rem;
+    height: auto;
     flex-direction: column;
   }
 }

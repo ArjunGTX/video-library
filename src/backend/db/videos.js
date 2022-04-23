@@ -11,7 +11,7 @@ export const videos = [
   },
   {
     _id: "zMectJQ9cWo",
-    title: "Benelli 600i Pure INLINE 4 sound |High Revs |IXIL X55 loud exhaust",
+    title: "Benelli 600i Pure INLINE 4 sound |High Revs",
     description:
       "Listen to High Quality Engine sound of BENELLI 600I.Enjoy the ride video.This video is made for entertainment purpose only.",
     creator: "raviKiran kasturi",
@@ -59,7 +59,7 @@ export const videos = [
   },
   {
     _id: "BGG4SKys01E",
-    title: "Triumph Tiger 900 GT - An All-Rounder Adventure Bike | Faisal Khan",
+    title: "Triumph Tiger 900 | An All-Rounder Adventure Bike",
     description:
       "Here is the most detailed review of the Triumph Tiger 900 GT I tell you everything about the design, cluster, features, performance, ride, handling, braking, price, and of course give you a verdict on whether you should buy a Triumph Tiger 900 GT in India. This Triumph Tiger 900 GT review is a long ride one with a real-world perspective of the adventure motorcycle from Triumph.",
     creator: "Faisal Khan",
@@ -69,8 +69,7 @@ export const videos = [
   },
   {
     _id: "wViSpn-GmMg",
-    title:
-      "Kawasaki ZX10R My Top Speed First Ride Review India 4K - Unscripted",
+    title: "Kawasaki ZX10R | Top Speed | First Ride Review",
     description:
       "hi guys, finally I get my hands on Kawasaki ZX10R - the Dominating Force from WSBK and Jonathan Rea's Weapon of Choice for 6 Consecutive Wins at WSBK. I share a complete overview and talk about my ride impression in my signature style motovlog.",
     creator: "Dino's Vault",
@@ -90,7 +89,7 @@ export const videos = [
   },
   {
     _id: "SZqk-O-nkjo",
-    title: "Kawasaki ZX6R Pure Sound of Adrenaline Rush #Bikes@Dinos",
+    title: "Kawasaki ZX6R Pure Sound of Adrenaline Rush",
     description:
       "Hi guys, another spontaneous vlog where I ride my friend's Kawasaki ZX6R on a Fine Sunday Morning and just instantly fall in love with the kind of insane acceleration and control and poise this machine has on offer. The legendary 636 engine sings gloriously as you and I get a glimpse of what makes this an Absolute Gem of an Engine from Kawasaki.",
     creator: "Dino's Vault",
@@ -100,7 +99,7 @@ export const videos = [
   },
   {
     _id: "_Q7aFwYy9h0",
-    title: "Pure Adrenaline Rush on Triumph Street Triple RS 765",
+    title: "Pure Adrenaline Rush on Triumph Street Triple",
     description:
       "Pure Adrenaline Rush on Triumph Street Triple RS 765 | SC-Project Pure Triple Symphony",
     creator: "Triple Rush",
@@ -140,8 +139,7 @@ export const videos = [
   },
   {
     _id: "GFG4udGLXic",
-    title:
-      "Isle of Man TT - Best Moments, Highlights and Pure Sound | Ultimate TT Compilation",
+    title: "Isle of Man TT - Best Moments, Highlights",
     description:
       "Welcome to our video showing the best fan footage/highlights of the Isle of Man TT in preparation of the 2019 Isle of Man TT. The Isle of Man TT, sometimes shortened to IOMTT, is the worlds most famous road racing event and one of the most popular motorsport spectacles. The Isle of Man TT features a variety of motorcycles including 1000cc superbikes an 600cc supersport bikes racing around the isle of man at crazy high speeds.",
     creator: "FTP Motorsport",
@@ -151,7 +149,7 @@ export const videos = [
   },
   {
     _id: "5KzBnuxDnYQ",
-    title: "AMAZING Isle of Man TT races | On-Bike RACE Lap! Cameron Donald",
+    title: "AMAZING Isle of Man TT races!",
     description:
       "Featuring detailed telemetry showing throttle and brake behaviour and speed, plus guided commentary from rapid Aussie rider and two time TT winner Cameron Donald  as he takes us on a high speed tour of the famous mountain course aboard his 600cc Honda Supersport weapon!",
     creator: "iomtt",

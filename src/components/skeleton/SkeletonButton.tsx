@@ -9,12 +9,14 @@ interface Props {
 
 export const SkeletonButton: React.FC<Props> = ({ className, size }) => {
   return (
-    <div
-      className={clsx(
-        "skeleton btn shadow-dark br-lg",
-        size ? `btn-${size}` : "btn-md",
-        className
-      )}
-    ></div>
+    <div className={clsx("fr-ct-ct bg-secondary-light py-sm br-lg", className)}>
+      <div
+        className={clsx(
+          "skeleton shadow-dark br-lg",
+          size ? `btn-${size}` : "btn-md",
+          className
+        )}
+      ></div>
+    </div>
   );
 };

@@ -1,4 +1,3 @@
-import { Button } from "./Button";
 import clsx from "clsx";
 import { SIDE_NAV_ITEMS } from "../util/constant";
 import { NavLink } from "react-router-dom";
@@ -11,12 +10,13 @@ export const SideNav: React.FC<Props> = ({ className }) => {
   return (
     <nav
       className={clsx(
-        "pos-fix side-nav bg-secondary-dark txt-light p-xl z-200 of-auto ",
+        "pos-fix side-nav bg-secondary-dark txt-light p-md z-200 ofx-auto ",
         className
       )}
     >
       {SIDE_NAV_ITEMS.map((item) => (
         <NavLink
+          end
           key={item.item}
           to={item.path}
           className={({ isActive }) =>

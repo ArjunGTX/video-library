@@ -1,9 +1,8 @@
-import { HiHome } from "react-icons/hi";
 import {
-  MdOutlineExplore,
   MdHistory,
   MdVideoLibrary,
   MdWatchLater,
+  MdExplore,
 } from "react-icons/md";
 import { AiFillLike } from "react-icons/ai";
 
@@ -29,13 +28,8 @@ export enum Constant {
 
 export const SIDE_NAV_ITEMS = [
   {
-    item: "Home",
-    icon: HiHome,
-    path: Path.HOME,
-  },
-  {
     item: "Explore",
-    icon: MdOutlineExplore,
+    icon: MdExplore,
     path: Path.VIDEOS,
   },
   {

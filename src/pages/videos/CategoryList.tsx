@@ -28,20 +28,21 @@ export const CategoryList: React.FC<Props> = ({ className }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 1500);
     }
   };
 
   return (
     <div
       className={clsx(
-        "full-width ofx-auto p-lg fr-fs-ct category-container",
-        className
+        "full-width p-lg fr-fs-ct category-container",
+        className,
+        loading || "ofx-auto"
       )}
     >
       {loading ? (
         getArray(5).map((item) => (
-          <SkeletonButton size="lg" className="mx-md" key={item} />
+          <SkeletonButton className="mx-md" key={item} />
         ))
       ) : (
         <>
