@@ -1,15 +1,28 @@
 import clsx from "clsx";
 import { GoSearch } from "react-icons/go";
 import { FiLogOut } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
 import { Logo } from "./Logo";
 import { TextInput } from "./TextInput";
 import { Avatar } from "./Avatar";
+import { useAuth } from "../context";
+import { useNavigate } from "react-router-dom";
+import { Path } from "../util/constant";
+import { Button } from "./Button";
 
 interface Props {
   className?: string;
 }
 
 export const Header: React.FC<Props> = ({ className }) => {
+  const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
+
+  const handleLogout = () => {
+    setAuth(null);
+    navigate(Path.LOGIN);
+  };
+
   return (
     <header
       className={clsx(
@@ -26,11 +39,24 @@ export const Header: React.FC<Props> = ({ className }) => {
         </TextInput>
       </div>
       <div className="fr-ct-ct">
-        <button className="txt-light hover-icon-primary fr-ct-ct txt-lg mx-md">
-          <FiLogOut />
-        </button>
+        {auth?.isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="txt-light hover-icon-primary fr-ct-ct txt-lg mx-md"
+          >
+            <FiLogOut />
+          </button>
+        ) : (
+          <Button variant="plain" color="primary" to={Path.LOGIN}>
+            Login
+          </Button>
+        )}
         <button className="txt-light mx-sm fr-ct-ct">
-          <Avatar />
+          {auth?.isLoggedIn ? (
+            <Avatar name={auth?.firstName} />
+          ) : (
+            <FaUserCircle className="txt-lg" />
+          )}
         </button>
       </div>
     </header>
