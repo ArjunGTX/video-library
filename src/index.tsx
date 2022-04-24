@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
-import { AuthProvider, CategoryProvider } from "./context";
+import { AuthProvider, CategoryProvider, LikesProvider } from "./context";
 import { VideoProvider } from "./context/VideoContext";
 import { makeServer } from "./server";
 import "./styles/index.scss";
@@ -18,7 +18,9 @@ root.render(
       <AuthProvider>
         <CategoryProvider>
           <VideoProvider>
-            <App />
+            <LikesProvider>
+              <App />
+            </LikesProvider>
           </VideoProvider>
         </CategoryProvider>
       </AuthProvider>

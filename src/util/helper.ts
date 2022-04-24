@@ -1,4 +1,6 @@
-export const getAccessToken = () => localStorage.getItem("auth");
+import { Constant } from "./constant";
+
+export const getAccessToken = () => localStorage.getItem(Constant.ACCESS_TOKEN);
 
 export const getArray = (length: number) => Array.from(Array(length).keys());
 

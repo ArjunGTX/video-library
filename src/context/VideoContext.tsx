@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { Video } from "../model/type";
 import * as api from "../model/api";
+import { Constant } from "../util/constant";
 
 interface Props {
   children?: React.ReactNode;
@@ -19,14 +20,17 @@ export const useVideos = () => useContext(VideoContext);
 
 export const VideoProvider: React.FC<Props> = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(0);
   const [videos, setVideos] = useState<Video[]>([]);
 
   const getVideosRequest = async () => {
+    if (Date.now() - lastUpdated < Constant.VIDEO_REFRESH_INTERVAL) return;
     setLoading(true);
     try {
       const { status, data } = await api.getVideos();
       if (status !== 200) return;
       setVideos(data.videos);
+      setLastUpdated(Date.now());
     } catch (error) {
       console.error(error);
     } finally {

@@ -4,7 +4,7 @@ import { Size } from "../../model/type";
 
 interface Props {
   className?: string;
-  size?: Size;
+  size?: "xxl" | Size;
   variant?: "heading" | "paragraph";
 }
 
@@ -12,7 +12,7 @@ export const SkeletonText: React.FC<Props> = ({ className, size, variant }) => {
   return (
     <div
       className={clsx(
-        "br-md skeleton",
+        "br-md skeleton ",
         variant === "heading"
           ? size
             ? `heading-${size}`
