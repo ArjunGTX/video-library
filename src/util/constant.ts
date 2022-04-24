@@ -24,6 +24,7 @@ export enum GuestUser {
 
 export enum Constant {
   AUTH = "auth",
+  CLOUDINARY_URL = "https://res.cloudinary.com/helmet-store/image/upload",
 }
 
 export const SIDE_NAV_ITEMS = [

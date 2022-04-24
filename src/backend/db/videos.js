@@ -5,9 +5,9 @@ export const videos = [
     description:
       "RAW sound of the 2014 Triumph Daytona 675 on the beautiful roads of the Black Forest in Germany. Be sure to subscribe to the channel for more of these to come in the near future. Thanks!",
     creator: "GearedUp",
-    creatorImage: "assets/images/creators/gearedup.jpg",
+    creatorImage: "v1650781005/gearedup_rzyuph.jpg",
     category: "eargasm",
-    thumbnail: "assets/images/thumbnail/eargasm/daytona.webp",
+    thumbnail: "v1650782343/daytona_cmmass.webp",
   },
   {
     _id: "zMectJQ9cWo",
@@ -15,9 +15,9 @@ export const videos = [
     description:
       "Listen to High Quality Engine sound of BENELLI 600I.Enjoy the ride video.This video is made for entertainment purpose only.",
     creator: "raviKiran kasturi",
-    creatorImage: "assets/images/creators/ravikiran.jpg",
+    creatorImage: "v1650781005/ravikiran_ltnudc.jpg",
     category: "eargasm",
-    thumbnail: "assets/images/thumbnail/eargasm/benelli.webp",
+    thumbnail: "v1650782342/benelli_gu77rr.webp",
   },
   {
     _id: "YTOQHzQXKJY",
@@ -25,9 +25,9 @@ export const videos = [
     description:
       "Ah yes! The Z900! That one bike which almost lets me forget I am not a big fan of inline-4s. Such a stunning nakedbike!",
     creator: "Schaaf",
-    creatorImage: "assets/images/creators/schaaf.jpg",
+    creatorImage: "v1650781005/schaaf_elsiks.jpg",
     category: "eargasm",
-    thumbnail: "assets/images/thumbnail/eargasm/z900.webp",
+    thumbnail: "v1650782343/z900_shpizo.webp",
   },
   {
     _id: "Hw22RbfSgww",
@@ -35,27 +35,27 @@ export const videos = [
     description:
       "Listen to the stock exhaust sound of a 2021 Ducati Streetfighter V4 S! This bike would deserve the title of beast! What an incredible machine! ",
     creator: "Schaaf",
-    creatorImage: "assets/images/creators/schaaf.jpg",
+    creatorImage: "v1650781005/schaaf_elsiks.jpg",
     category: "eargasm",
-    thumbnail: "assets/images/thumbnail/eargasm/ducati.webp",
+    thumbnail: "v1650782343/ducati_uumu5i.webp",
   },
   {
     _id: "Wsjeq48t0Co",
     title: "Royal Enfield Scram 411 Detailed Review",
     description: "Royal Enfield Scram 411 Detailed Review",
     creator: "Strell",
-    creatorImage: "assets/images/creators/strell.jpg",
+    creatorImage: "v1650781005/strell_w2adiz.jpg",
     category: "review",
-    thumbnail: "assets/images/thumbnail/review/scram411.webp",
+    thumbnail: "v1650782513/scram411_ibqjpt.webp",
   },
   {
     _id: "E12v3_xgyKM",
     title: "Yamaha R15 V4 M Detailed Review",
     description: "Yamaha R15 V4 M Detailed Review",
     creator: "Strell",
-    creatorImage: "assets/images/creators/strell.jpg",
+    creatorImage: "v1650781005/strell_w2adiz.jpg",
     category: "review",
-    thumbnail: "assets/images/thumbnail/review/r15.webp",
+    thumbnail: "v1650782513/r15_fc1tfp.webp",
   },
   {
     _id: "BGG4SKys01E",
@@ -63,9 +63,9 @@ export const videos = [
     description:
       "Here is the most detailed review of the Triumph Tiger 900 GT I tell you everything about the design, cluster, features, performance, ride, handling, braking, price, and of course give you a verdict on whether you should buy a Triumph Tiger 900 GT in India. This Triumph Tiger 900 GT review is a long ride one with a real-world perspective of the adventure motorcycle from Triumph.",
     creator: "Faisal Khan",
-    creatorImage: "assets/images/creators/faisal-khan.jpg",
+    creatorImage: "v1650781004/faisal-khan_sy4fxe.jpg",
     category: "review",
-    thumbnail: "assets/images/thumbnail/review/tiger.webp",
+    thumbnail: "v1650782513/tiger_bnmexe.webp",
   },
   {
     _id: "wViSpn-GmMg",
@@ -73,9 +73,9 @@ export const videos = [
     description:
       "hi guys, finally I get my hands on Kawasaki ZX10R - the Dominating Force from WSBK and Jonathan Rea's Weapon of Choice for 6 Consecutive Wins at WSBK. I share a complete overview and talk about my ride impression in my signature style motovlog.",
     creator: "Dino's Vault",
-    creatorImage: "assets/images/creators/dino.jpg",
+    creatorImage: "v1650781004/dino_hg1goz.jpg",
     category: "review",
-    thumbnail: "assets/images/thumbnail/review/zx10r.webp",
+    thumbnail: "v1650782513/zx10r_kptg4x.webp",
   },
   {
     _id: "RSXoSFjWDu0",
@@ -83,9 +83,9 @@ export const videos = [
     description:
       "Be The Best Not The Fastest. Be the best not always means you are the fastest one. You should never ride beyond or even close to your limits.",
     creator: "SuperBike Racer",
-    creatorImage: "assets/images/creators/superbike-racer.jpg",
+    creatorImage: "v1650781006/superbike-racer_fudtfo.jpg",
     category: "adrenaline-rush",
-    thumbnail: "assets/images/thumbnail/adrenaline/r6.webp",
+    thumbnail: "v1650782170/r6_onvazp.webp",
   },
   {
     _id: "SZqk-O-nkjo",
@@ -93,9 +93,9 @@ export const videos = [
     description:
       "Hi guys, another spontaneous vlog where I ride my friend's Kawasaki ZX6R on a Fine Sunday Morning and just instantly fall in love with the kind of insane acceleration and control and poise this machine has on offer. The legendary 636 engine sings gloriously as you and I get a glimpse of what makes this an Absolute Gem of an Engine from Kawasaki.",
     creator: "Dino's Vault",
-    creatorImage: "assets/images/creators/dino.jpg",
+    creatorImage: "v1650781004/dino_hg1goz.jpg",
     category: "adrenaline-rush",
-    thumbnail: "assets/images/thumbnail/adrenaline/zx6r.webp",
+    thumbnail: "v1650782170/zx6r_tqho0m.webp",
   },
   {
     _id: "_Q7aFwYy9h0",
@@ -103,9 +103,9 @@ export const videos = [
     description:
       "Pure Adrenaline Rush on Triumph Street Triple RS 765 | SC-Project Pure Triple Symphony",
     creator: "Triple Rush",
-    creatorImage: "assets/images/creators/triple-rush.jpg",
+    creatorImage: "v1650781005/triple-rush_sl8gkw.jpg",
     category: "adrenaline-rush",
-    thumbnail: "assets/images/thumbnail/adrenaline/street-tiple.webp",
+    thumbnail: "v1650782170/street-triple_ipozee.webp",
   },
   {
     _id: "PoEMtsOtpg8",
@@ -113,9 +113,9 @@ export const videos = [
     description:
       "Taking a dose of pure adrenaline on my Suzuki Gsx-r 1000 K9 after an abstention of 2 months, i was a little bit cautious with my driving because of the street's cold temperature  and also of the street surface, in some places was wet.Video was shoot with GoPro Hero 4 Black and a Gyro Mount.",
     creator: "SuperBike Racer",
-    creatorImage: "assets/images/creators/superbike-racer.jpg",
+    creatorImage: "v1650781006/superbike-racer_fudtfo.jpg",
     category: "adrenaline-rush",
-    thumbnail: "assets/images/thumbnail/adrenaline/gsxr.webp",
+    thumbnail: "v1650782170/gsxr_j18afr.webp",
   },
   {
     _id: "x63bh1_gg_M",
@@ -123,9 +123,9 @@ export const videos = [
     description:
       "In this video you will see extremely fast motorcycle rides during the TT race on the Isle of Man. Many thanks to all motorcyclists and motorcycle fans who contributed their videos to our motorcycle channel.",
     creator: "martin Ward",
-    creatorImage: "assets/images/creators/martin.jpg",
+    creatorImage: "v1650781004/martin_h8zbmm.jpg",
     category: "isle-of-man",
-    thumbnail: "assets/images/thumbnail/isle-of-man/isle-1.webp",
+    thumbnail: "v1650782432/isle-1_zzadq4.webp",
   },
   {
     _id: "D3Ck0R1Ha_8",
@@ -133,9 +133,9 @@ export const videos = [
     description:
       "Here is what I have stumbled across online for reactions of people watching the races over the TT period",
     creator: "TMVinyl",
-    creatorImage: "assets/images/creators/tmvynil.jpg",
+    creatorImage: "v1650781005/tmvynil_frlcg7.jpg",
     category: "isle-of-man",
-    thumbnail: "assets/images/thumbnail/isle-of-man/isle-2.webp",
+    thumbnail: "v1650782432/isle-2_b4sxpw.webp",
   },
   {
     _id: "GFG4udGLXic",
@@ -143,9 +143,9 @@ export const videos = [
     description:
       "Welcome to our video showing the best fan footage/highlights of the Isle of Man TT in preparation of the 2019 Isle of Man TT. The Isle of Man TT, sometimes shortened to IOMTT, is the worlds most famous road racing event and one of the most popular motorsport spectacles. The Isle of Man TT features a variety of motorcycles including 1000cc superbikes an 600cc supersport bikes racing around the isle of man at crazy high speeds.",
     creator: "FTP Motorsport",
-    creatorImage: "assets/images/creators/ftp.jpg",
+    creatorImage: "v1650781004/ftp_xoc2nt.jpg",
     category: "isle-of-man",
-    thumbnail: "assets/images/thumbnail/isle-of-man/isle-3.webp",
+    thumbnail: "v1650782433/isle-3_olttom.webp",
   },
   {
     _id: "5KzBnuxDnYQ",
@@ -153,8 +153,8 @@ export const videos = [
     description:
       "Featuring detailed telemetry showing throttle and brake behaviour and speed, plus guided commentary from rapid Aussie rider and two time TT winner Cameron Donald  as he takes us on a high speed tour of the famous mountain course aboard his 600cc Honda Supersport weapon!",
     creator: "iomtt",
-    creatorImage: "assets/images/creators/iomtt.jpg",
+    creatorImage: "v1650781004/iomtt_yy8jqv.jpg",
     category: "isle-of-man",
-    thumbnail: "assets/images/thumbnail/isle-of-man/isle-4.webp",
+    thumbnail: "/v1650782433/isle-4_lfmxkn.webp",
   },
 ];

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Avatar, VideoCard } from "../../components";
 import { useVideos } from "../../context/VideoContext";
+import { Constant } from "../../util/constant";
 import { getVideoUrl } from "../../util/helper";
 
 export const VideoDetails = () => {
@@ -31,7 +32,13 @@ export const VideoDetails = () => {
         <div className="fc-fs-fs p-xl">
           <h5 className="txt-lg">{videoInfo?.title}</h5>
           <div className="fr-fs-ct py-md">
-            {videoInfo && <Avatar size="xl" name={videoInfo?.creator} />}
+            {videoInfo && (
+              <Avatar
+                size="xl"
+                name={videoInfo?.creator}
+                imageSrc={`${Constant.CLOUDINARY_URL}/${videoInfo?.creatorImage}`}
+              />
+            )}
 
             <p className="ml-md txt-sm">{videoInfo?.creator}</p>
           </div>
