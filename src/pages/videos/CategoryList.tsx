@@ -21,7 +21,7 @@ export const CategoryList: React.FC<Props> = ({ className }) => {
   return (
     <div
       className={clsx(
-        "full-width p-lg fr-fs-ct category-container",
+        "full-width p-lg fr-fs-ct pos-abs z-200 bg-secondary category-container",
         className,
         loading || "ofx-auto"
       )}

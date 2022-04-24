@@ -29,7 +29,7 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
       <div className="full-width full-height of-hidden">
         <img src={imageUrl} alt={video.title} className="img-res" />
       </div>
-      <div className="fr-fs-fs p-md">
+      <div className="fr-fs-fs p-md video-info">
         <div className="">
           <Avatar name={video.creator} imageSrc={video.creatorImage} />
         </div>

@@ -15,11 +15,11 @@ export const VideoList = () => {
   }, [videos]);
 
   return (
-    <div className="full-width full-height of-hidden">
+    <div className="full-width full-height pos-rel of-hidden">
       <CategoryList />
       <div
         className={clsx(
-          "video-container px-xl full-width full-height",
+          "video-container px-xl full-width pos-abs",
           loading ? "ofy-hidden" : "ofy-auto"
         )}
       >
@@ -31,7 +31,6 @@ export const VideoList = () => {
               <VideoCard video={video} className="m-sm" key={video._id} />
             ))}
       </div>
-      <div className="half-height">sdf</div>
     </div>
   );
 };
