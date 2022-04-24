@@ -4,10 +4,10 @@
 .video-container {
   display: grid;
   align-content: flex-start;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 .video-card {
-  min-height: 18rem;
+  height: 25rem;
 }
 .video-details {
   overflow-y: auto;
@@ -37,5 +37,11 @@
       width: 100%;
       height: 100%;
     }
+    & .video-card {
+      min-height: 18rem;
+    }
+  }
+  .video-card {
+    height: 18rem;
   }
 }

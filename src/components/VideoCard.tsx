@@ -22,17 +22,21 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
       onMouseOver={() => setImageUrl(video.thumbnail)}
       onMouseLeave={() => setImageUrl(getImageUrl(video._id))}
       className={clsx(
-        "video-card fc-fs-fs br-sm pos-rel bg-secondary-light p-md txt-light cursor-pointer",
+        "video-card fc-fs-fs pos-rel txt-light cursor-pointer",
         className
       )}
     >
-      <h5>{video.title}</h5>
-      <div className="full-width full-height my-md of-hidden br-xs">
+      <div className="full-width full-height of-hidden">
         <img src={imageUrl} alt={video.title} className="img-res" />
       </div>
-      <div className="fr-fs-ct">
-        <Avatar name={video.creator} imageSrc={video.creatorImage} />
-        <p className="ml-md">{video.creator}</p>
+      <div className="fr-fs-fs p-md">
+        <div className="">
+          <Avatar name={video.creator} imageSrc={video.creatorImage} />
+        </div>
+        <div className="ml-md fc-fs-fs">
+          <h5 className="font-medium">{video.title}</h5>
+          <p className="txt-xs">{video.creator}</p>
+        </div>
       </div>
     </div>
   );

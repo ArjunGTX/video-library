@@ -31,6 +31,7 @@ export const VideoList = () => {
               <VideoCard video={video} className="m-sm" key={video._id} />
             ))}
       </div>
+      <div className="half-height">sdf</div>
     </div>
   );
 };
