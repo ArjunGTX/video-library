@@ -21,7 +21,10 @@ export const LikedList = () => {
       <div
         className={clsx(
           "video-container px-xl full-width pos-abs",
-          loading ? "ofy-hidden" : "ofy-auto"
+          loading ? "ofy-hidden" : "ofy-auto",
+          likedVideos.length < 3 && !loading
+            ? "video-grid-fixed"
+            : "video-grid-dynamic"
         )}
       >
         {loading

@@ -37,7 +37,7 @@ export const VideoActions: React.FC<Props> = ({ className, video }) => {
   const removeLikeRequest = async () => {
     try {
       const { status } = await api.removeFromLikes(video._id);
-      if (status !== 201) return;
+      if (status !== 200) return;
       syncLikesWithServer();
       setIsLiked(false);
     } catch (error) {

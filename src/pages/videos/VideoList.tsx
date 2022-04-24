@@ -20,7 +20,10 @@ export const VideoList = () => {
       <div
         className={clsx(
           "video-container px-xl full-width pos-abs",
-          loading ? "ofy-hidden" : "ofy-auto"
+          loading ? "ofy-hidden" : "ofy-auto",
+          videos.length < 3 && !loading
+            ? "video-grid-fixed"
+            : "video-grid-dynamic"
         )}
       >
         {loading

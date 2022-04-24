@@ -6,6 +6,12 @@
   bottom: 0;
   display: grid;
   align-content: flex-start;
+}
+.video-grid-fixed {
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.video-grid-dynamic {
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 .video-card {
@@ -29,6 +35,9 @@
 }
 
 @media screen and (min-width: 640px) {
+  .video-grid-fixed {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 25rem));
+  }
   .video-details {
     overflow-y: hidden;
     display: grid;
@@ -37,7 +46,7 @@
     & > * {
       overflow-y: auto;
       height: 100%;
-      padding: map-get($paddings, "sm" );
+      padding: map-get($paddings, "sm");
     }
     & iframe {
       width: 100%;
