@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Video } from "../model/type";
-import { Path } from "../util/constant";
+import { Constant, Path } from "../util/constant";
 import { getImageUrl } from "../util/helper";
 import { Avatar } from "./Avatar";
 
@@ -19,7 +19,9 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
   return (
     <div
       onClick={() => navigate(`${Path.VIDEOS}/${video._id}`)}
-      onMouseOver={() => setImageUrl(video.thumbnail)}
+      onMouseOver={() =>
+        setImageUrl(`${Constant.CLOUDINARY_URL}/${video.thumbnail}`)
+      }
       onMouseLeave={() => setImageUrl(getImageUrl(video._id))}
       className={clsx(
         "video-card fc-fs-fs pos-rel txt-light cursor-pointer",
@@ -31,7 +33,10 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
       </div>
       <div className="fr-fs-fs p-md video-info">
         <div className="">
-          <Avatar name={video.creator} imageSrc={video.creatorImage} />
+          <Avatar
+            name={video.creator}
+            imageSrc={`${Constant.CLOUDINARY_URL}/${video.creatorImage}`}
+          />
         </div>
         <div className="ml-md fc-fs-fs">
           <h5 className="font-medium">{video.title}</h5>
