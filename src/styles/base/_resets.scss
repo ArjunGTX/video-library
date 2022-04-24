@@ -17,6 +17,7 @@
 }
 :root {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 button {
   border: none;
@@ -59,20 +60,11 @@ $base-size: 8;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background-color: map-get($background-colors, "secondary");
-}
-::-webkit-scrollbar-thumb {
-  background-color: map-get($background-colors, "primary");
-  border-radius: map-get($border-radii, "xl");
+  appearance: none;
+  -webkit-appearance: none;
 }
 * {
-  scrollbar-width: thin;
-  scrollbar-color: map-get($background-colors, "primary")
-    map-get($background-colors, "secondary");
+  scrollbar-width: none;
 }
 
 input {
@@ -155,4 +147,23 @@ input[type="range"] {
   background-color: $border-medium;
   border-radius: map-get($border-radii, "sm");
   cursor: pointer;
+}
+
+@media screen and (min-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: map-get($background-colors, "secondary");
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: map-get($background-colors, "primary");
+    border-radius: map-get($border-radii, "xl");
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: map-get($background-colors, "primary")
+      map-get($background-colors, "secondary");
+  }
 }

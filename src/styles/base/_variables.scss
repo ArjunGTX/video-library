@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
 //colors
-$primary-main: #FFBD69;
+$primary-main: #ffbd69;
 $primary-light: #ffc77d;
 
-$secondary-main: #202040;
-$secondary-light: #20204080;
+$secondary-dark: #050915;
+$secondary-main: #0d101b;
+$secondary-light: #1a2029;
 
 $error-main: #d62b36;
 $error-dark: #d42b36;
@@ -12,7 +13,7 @@ $warning-main: #ffecb5;
 $warning-dark: #664d03;
 $success-main: #81db7b;
 $success-dark: #036318;
-$info-main: #036318;
+$info-main: #67c7ff;
 $info-dark: #055160;
 
 $text-dark: #000000;
@@ -23,6 +24,8 @@ $text-light: #cfcfcf;
 $border-light: #d8d8d8ce;
 $border-medium: #0f0f0f50;
 
+$skeleton-color: #010611;
+$skeleton-gradient: #1f2531;
 
 //fonts
 $font-primary: "Poppins", "Roboto", "Helvetica", "Arial", sans-serif;
@@ -53,7 +56,7 @@ $base-avatar-sizes: 1.25rem;
 $cursors: pointer, not-allowed, default;
 
 //gradients
-$image-overlay-light: linear-gradient(0deg, #00000010, #00000010);
+$image-overlay-light: linear-gradient(0deg, #0000007c, #00000010);
 $image-overlay-medium: linear-gradient(0deg, #00000020, #00000020);
 
 //media query break points

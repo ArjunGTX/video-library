@@ -1,0 +1,18 @@
+.page-wrapper {
+  & main {
+    top: 6rem;
+    left: 0;
+    right: 0;
+    bottom: 8rem;
+  }
+}
+
+@media screen and (min-width: map-get($break-points, "md")) {
+  .page-wrapper {
+    & main {
+      left: 9rem;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}

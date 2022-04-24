@@ -1,0 +1,42 @@
+.skeleton {
+  &.text-xs {
+    width: 8rem;
+    height: 0.8rem;
+  }
+  &.text-sm {
+    width: 12rem;
+    height: 0.8rem;
+  }
+  &.text-md {
+    width: 16rem;
+    height: 0.8rem;
+  }
+  &.text-lg {
+    width: 20rem;
+    height: 0.8rem;
+  }
+  &.text-xl {
+    width: 24rem;
+    height: 0.8rem;
+  }
+  &.heading-xs {
+    width: 8rem;
+    height: 1.3rem;
+  }
+  &.heading-sm {
+    width: 12rem;
+    height: 1.3rem;
+  }
+  &.heading-md {
+    width: 16rem;
+    height: 1.3rem;
+  }
+  &.heading-lg {
+    width: 20rem;
+    height: 1.3rem;
+  }
+  &.heading-xl {
+    width: 24rem;
+    height: 1.3rem;
+  }
+}

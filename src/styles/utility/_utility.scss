@@ -40,6 +40,10 @@
     color: map-get($background-colors, "secondary");
     transition: background-color 300ms;
   }
+  .hover-icon-#{$color}:hover {
+    color: $value;
+    transition: color 300ms;
+  }
 }
 .bd-none {
   border: 2px solid transparent;
@@ -56,6 +60,13 @@
 }
 .f-wrap {
   flex-wrap: wrap;
+}
+
+@each $size, $value in $avatar-sizes {
+  .avatar-#{$size} {
+    width: $value;
+    height: $value;
+  }
 }
 
 @each $cursor in $cursors {
@@ -83,8 +94,6 @@
   width: max-content;
 }
 .img-res {
-  max-inline-size: 100%;
-  block-size: auto;
   object-fit: cover;
   object-position: center;
   width: 100%;
@@ -138,7 +147,6 @@
 .pos-fix {
   position: fixed;
 }
-
 .top-right {
   top: 1rem;
   right: 1rem;
@@ -163,12 +171,10 @@
 .sticky-top {
   position: sticky;
   top: 0;
-  z-index: 20;
 }
 .sticky-bottom {
   position: sticky;
   bottom: 0;
-  z-index: 20;
 }
 
 .txt-underline {
@@ -199,7 +205,9 @@
 .z-300 {
   z-index: 300;
 }
-
 .br-round {
   border-radius: 50%;
+}
+.txt-no-wrap {
+  white-space: nowrap;
 }

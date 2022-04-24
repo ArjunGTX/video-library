@@ -3,7 +3,7 @@ import { Path } from "../../util/constant";
 
 export const LandingPage = () => {
   return (
-    <div className="full-page bg-secondary fc-fs-fs txt-light landing-page">
+    <div className="full-page bg-secondary fc-fs-fs txt-light landing-page of-hidden">
       <div className="fr-fe-ct p-xl full-width">
         <Button to={Path.LOGIN} className="m-xl hover-primary" size="sm">
           Login

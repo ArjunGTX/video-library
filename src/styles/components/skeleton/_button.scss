@@ -1,0 +1,22 @@
+.skeleton {
+  &.btn-xs {
+    width: 2rem;
+    height: 1rem;
+  }
+  &.btn-sm {
+    width: 4rem;
+    height: 1.2rem;
+  }
+  &.btn-md {
+    width: 6rem;
+    height: 1.4rem;
+  }
+  &.btn-lg {
+    width: 8rem;
+    height: 1.6rem;
+  }
+  &.btn-xl {
+    width: 10rem;
+    height: 1.8rem;
+  }
+}
