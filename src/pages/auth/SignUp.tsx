@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Logo, TextInput } from "../../components";
-import { Path } from "../../util/constant";
+import { Constant, Path } from "../../util/constant";
 import * as api from "../../model/api";
 import * as validate from "../../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -56,6 +56,7 @@ export const SignUp = () => {
         lastName: data.createdUser.lastName,
         userId: data.createdUser._id,
       });
+      localStorage.setItem(Constant.ACCESS_TOKEN, data.encodedToken);
       navigate(Path.HOME);
     } catch (error) {
       console.log(error);

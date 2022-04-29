@@ -1,27 +1,28 @@
+import clsx from "clsx";
 import { useEffect } from "react";
 import { SkeletonVideoCard, VideoCard } from "../../components";
-import { useVideos } from "../../context/VideoContext";
-import { CategoryList } from "./CategoryList";
+import { useLikes } from "../../context";
 import { getArray } from "../../util/helper";
-import clsx from "clsx";
 
-export const VideoList = () => {
-  const { videos, loading, syncVideosWithServer } = useVideos();
+export const LikedList = () => {
+  const { likedVideos, loading, syncLikesWithServer } = useLikes();
 
   useEffect(() => {
-    if (videos.length === 0) {
-      syncVideosWithServer();
+    if (likedVideos.length === 0) {
+      syncLikesWithServer();
     }
-  }, [videos]);
+  }, [likedVideos]);
 
   return (
     <div className="full-width full-height pos-rel of-hidden">
-      <CategoryList />
+      <div className="fr-fs-ct full-width p-xl">
+        <h2 className="txt-lg txt-light font-medium mx-sm">LIKED VIDEOS</h2>
+      </div>
       <div
         className={clsx(
           "video-container px-xl full-width pos-abs",
           loading ? "ofy-hidden" : "ofy-auto",
-          videos.length < 3 && !loading
+          likedVideos.length < 3 && !loading
             ? "video-grid-fixed"
             : "video-grid-dynamic"
         )}
@@ -30,7 +31,7 @@ export const VideoList = () => {
           ? getArray(8).map((item) => (
               <SkeletonVideoCard className="m-sm" key={item} />
             ))
-          : videos.map((video) => (
+          : likedVideos.map((video) => (
               <VideoCard video={video} className="m-sm" key={video._id} />
             ))}
       </div>

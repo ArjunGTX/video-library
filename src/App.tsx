@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { PageWrapper } from "./components";
 import {
   LandingPage,
+  LikedList,
   Login,
   PageNotFound,
   SignUp,
@@ -29,6 +30,14 @@ export const App = () => {
         element={
           <PageWrapper>
             <VideoDetails />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={Path.LIKES}
+        element={
+          <PageWrapper requiresAuth>
+            <LikedList />
           </PageWrapper>
         }
       />

@@ -24,7 +24,11 @@ export enum GuestUser {
 
 export enum Constant {
   AUTH = "auth",
+  ACCESS_TOKEN = "accessToken",
   CLOUDINARY_URL = "https://res.cloudinary.com/helmet-store/image/upload",
+  VIDEO_REFRESH_INTERVAL = 2000,
+  CATEGORY_REFRESH_INTERVAL = 2000,
+  LIKES_REFRESH_INTERVAL = 2000,
 }
 
 export const SIDE_NAV_ITEMS = [

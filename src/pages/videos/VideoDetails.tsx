@@ -1,13 +1,20 @@
+import clsx from "clsx";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Avatar, VideoCard } from "../../components";
+import {
+  Avatar,
+  SkeletonVideoCard,
+  SkeletonVideoPlayer,
+  VideoCard,
+} from "../../components";
 import { useVideos } from "../../context/VideoContext";
 import { Constant } from "../../util/constant";
-import { getVideoUrl } from "../../util/helper";
+import { getArray, getVideoUrl } from "../../util/helper";
+import { VideoActions } from "./VideoActions";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
-  const { videos, syncVideosWithServer } = useVideos();
+  const { videos, syncVideosWithServer, loading } = useVideos();
 
   const videoInfo = videos.find((video) => video._id === videoId);
 
@@ -20,35 +27,59 @@ export const VideoDetails = () => {
   }, [videos]);
 
   return (
-    <div className="txt-light full-width full-height video-details">
-      <div className="fc-fs-fs">
-        <iframe
-          title="YouTube video player"
-          src={videoId ? getVideoUrl(videoId) : ""}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-          allowFullScreen
-        ></iframe>
-        <div className="fc-fs-fs p-xl">
-          <h5 className="txt-lg">{videoInfo?.title}</h5>
-          <div className="fr-fs-ct py-md">
-            {videoInfo && (
-              <Avatar
-                size="xl"
-                name={videoInfo?.creator}
-                imageSrc={`${Constant.CLOUDINARY_URL}/${videoInfo?.creatorImage}`}
-              />
-            )}
-
-            <p className="ml-md txt-sm">{videoInfo?.creator}</p>
+    <div
+      className={clsx(
+        "txt-light full-width full-height video-details",
+        loading && "of-hidden"
+      )}
+    >
+      {!loading ? (
+        videoInfo ? (
+          <div className="fc-fs-fs">
+            <iframe
+              className="frame"
+              title="YouTube video player"
+              src={videoId ? getVideoUrl(videoId) : ""}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+            ></iframe>
+            <div className="fc-fs-fs p-xl">
+              <div className="fr-sb-fs full-width">
+                <h5 className="txt-lg mr-md">{videoInfo.title}</h5>
+                <VideoActions video={videoInfo} />
+              </div>
+              <div className="fr-fs-ct py-md">
+                {videoInfo && (
+                  <Avatar
+                    size="xl"
+                    name={videoInfo.creator}
+                    imageSrc={`${Constant.CLOUDINARY_URL}/${videoInfo.creatorImage}`}
+                  />
+                )}
+                <p className="ml-md txt-sm">{videoInfo.creator}</p>
+              </div>
+              <p className="mt-md mb-xxl txt-sm">{videoInfo.description}</p>
+            </div>
           </div>
-          <p className="mt-md mb-xxl txt-sm">{videoInfo?.description}</p>
+        ) : (
+          <div className="full-width full-height fr-ct-ct txt-xl txt-error">
+            Failed to Load Video
+          </div>
+        )
+      ) : (
+        <div className="fc-fs-fs of-hidden">
+          <SkeletonVideoPlayer />
         </div>
-      </div>
+      )}
       <div className="fc-fs-fs">
-        {suggestedVideos?.map((video) => (
-          <VideoCard video={video} key={video._id} className="my-xs" />
-        ))}
+        {loading
+          ? getArray(8).map((item) => (
+              <SkeletonVideoCard key={item} className="my-xs" />
+            ))
+          : suggestedVideos?.map((video) => (
+              <VideoCard video={video} key={video._id} className="my-xs" />
+            ))}
       </div>
     </div>
   );
