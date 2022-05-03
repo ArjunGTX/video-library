@@ -11,10 +11,13 @@ import { useVideos } from "../../context/VideoContext";
 import { Constant } from "../../util/constant";
 import { getArray, getVideoUrl } from "../../util/helper";
 import { VideoActions } from "./VideoActions";
+import * as api from "../../model/api";
+import { useHistory } from "../../context";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
   const { videos, syncVideosWithServer, loading } = useVideos();
+  const { syncHistoryWithServer, history } = useHistory();
 
   const videoInfo = videos.find((video) => video._id === videoId);
 
@@ -24,7 +27,22 @@ export const VideoDetails = () => {
     if (videos.length === 0) {
       syncVideosWithServer();
     }
-  }, [videos]);
+    if (videoInfo) {
+      addVideoToHistoryRequest();
+    }
+  }, [videos, videoInfo]);
+
+  const addVideoToHistoryRequest = async () => {
+    if (!videoInfo || history.some((video) => video._id === videoInfo._id))
+      return;
+    try {
+      const { status, data } = await api.addToHistory(videoInfo);
+      if (status !== 201) return;
+      syncHistoryWithServer();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div

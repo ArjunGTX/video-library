@@ -35,6 +35,11 @@ export const LikedList = () => {
               <VideoCard video={video} className="m-sm" key={video._id} />
             ))}
       </div>
+      {!loading && likedVideos.length === 0 && (
+        <div className="fc-fs-ct py-xl my-xl full-width">
+          <p className="mb-lg txt-xl txt-light">No Liked Videos</p>
+        </div>
+      )}
     </div>
   );
 };

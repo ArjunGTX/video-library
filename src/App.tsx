@@ -9,6 +9,7 @@ import {
   VideoDetails,
   VideoList,
 } from "./pages";
+import { HistoryList } from "./pages/history";
 import { Path } from "./util/constant";
 
 export const App = () => {
@@ -38,6 +39,14 @@ export const App = () => {
         element={
           <PageWrapper requiresAuth>
             <LikedList />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={Path.HISTORY}
+        element={
+          <PageWrapper requiresAuth>
+            <HistoryList />
           </PageWrapper>
         }
       />
