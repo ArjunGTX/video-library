@@ -5,14 +5,18 @@ import { Video } from "../model/type";
 import { Constant, Path } from "../util/constant";
 import { getImageUrl } from "../util/helper";
 import { Avatar } from "./Avatar";
+import { Button } from "./Button";
 
 interface Props {
   className?: string;
   video: Video;
-  nowPlaying?: boolean;
+  videoBtn?: {
+    onClick: (videoId: string) => any;
+    icon: React.ReactNode;
+  };
 }
 
-export const VideoCard: React.FC<Props> = ({ className, video }) => {
+export const VideoCard: React.FC<Props> = ({ className, video, videoBtn }) => {
   const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState(getImageUrl(video._id));
 
@@ -31,17 +35,30 @@ export const VideoCard: React.FC<Props> = ({ className, video }) => {
       <div className="full-width full-height of-hidden">
         <img src={imageUrl} alt={video.title} className="img-res" />
       </div>
-      <div className="fr-fs-fs p-md video-info">
+      <div className="fr-fs-fs p-md video-info full-width">
         <div className="">
           <Avatar
             name={video.creator}
             imageSrc={`${Constant.CLOUDINARY_URL}/${video.creatorImage}`}
           />
         </div>
-        <div className="ml-md fc-fs-fs">
+        <div className="ml-md fc-fs-fs full-width">
           <h5 className="font-medium">{video.title}</h5>
           <p className="txt-xs">{video.creator}</p>
         </div>
+        {videoBtn && (
+          <Button
+            className="ml-auto"
+            variant="icon"
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              videoBtn.onClick(video._id);
+            }}
+          >
+            {videoBtn.icon}
+          </Button>
+        )}
       </div>
     </div>
   );

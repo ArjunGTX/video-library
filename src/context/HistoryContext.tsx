@@ -25,7 +25,7 @@ export const HistoryProvider: React.FC<Props> = ({ children }) => {
 
   const getHistoryRequest = async () => {
     if (Date.now() - lastUpdated < Constant.LIKES_REFRESH_INTERVAL) return;
-    setLoading(true);
+    lastUpdated === 0 && setLoading(true);
     try {
       const { status, data } = await api.getHistory();
       if (status !== 200) return;

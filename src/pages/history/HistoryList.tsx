@@ -2,8 +2,9 @@ import clsx from "clsx";
 import { useEffect } from "react";
 import { Button, SkeletonVideoCard, VideoCard } from "../../components";
 import { useHistory } from "../../context";
-import { Path } from "../../util/constant";
 import { getArray } from "../../util/helper";
+import * as api from "../../model/api";
+import { BsTrashFill } from "react-icons/bs";
 
 export const HistoryList = () => {
   const { history, loading, syncHistoryWithServer } = useHistory();
@@ -14,10 +15,39 @@ export const HistoryList = () => {
     }
   }, [history]);
 
+  const removeFromHistoryRequest = async (videoId: string) => {
+    try {
+      const { status } = await api.removeFromHistory(videoId);
+      if (status !== 200) return;
+      syncHistoryWithServer();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const clearHistoryRequest = async () => {
+    try {
+      const { status } = await api.clearHistory();
+      if (status !== 200) return;
+      syncHistoryWithServer();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="full-width full-height pos-rel of-hidden">
-      <div className="fr-fs-ct full-width p-xl">
+      <div className="fr-sb-ct full-width p-xl">
         <h2 className="txt-lg txt-light font-medium mx-sm">HISTORY</h2>
+        {!loading && history.length !== 0 && (
+          <Button
+            onClick={clearHistoryRequest}
+            color="light"
+            variant="outlined"
+          >
+            Clear History
+          </Button>
+        )}
       </div>
       <div
         className={clsx(
@@ -33,15 +63,20 @@ export const HistoryList = () => {
               <SkeletonVideoCard className="m-sm" key={item} />
             ))
           : history.map((video) => (
-              <VideoCard video={video} className="m-sm" key={video._id} />
+              <VideoCard
+                video={video}
+                className="m-sm"
+                key={video._id}
+                videoBtn={{
+                  icon: <BsTrashFill />,
+                  onClick: removeFromHistoryRequest,
+                }}
+              />
             ))}
       </div>
       {!loading && history.length === 0 && (
-        <div className="fc-ct-ct full-height full-width">
+        <div className="fc-fs-ct py-xl my-xl full-width">
           <p className="mb-lg txt-xl txt-light">History is Empty</p>
-          <Button size="lg" to={Path.VIDEOS}>
-            Start Watching
-          </Button>
         </div>
       )}
     </div>
