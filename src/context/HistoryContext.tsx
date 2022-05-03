@@ -24,7 +24,7 @@ export const HistoryProvider: React.FC<Props> = ({ children }) => {
   const [history, setHistory] = useState<Video[]>([]);
 
   const getHistoryRequest = async () => {
-    if (Date.now() - lastUpdated < Constant.LIKES_REFRESH_INTERVAL) return;
+    if (Date.now() - lastUpdated < Constant.HISTORY_REFRESH_INTERVAL) return;
     lastUpdated === 0 && setLoading(true);
     try {
       const { status, data } = await api.getHistory();

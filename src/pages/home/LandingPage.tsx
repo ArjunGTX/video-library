@@ -1,13 +1,17 @@
 import { Button, Logo } from "../../components";
+import { useAuth } from "../../context";
 import { Path } from "../../util/constant";
 
 export const LandingPage = () => {
+  const { auth } = useAuth();
   return (
     <div className="full-page bg-secondary fc-fs-fs txt-light landing-page of-hidden">
       <div className="fr-fe-ct p-xl full-width">
-        <Button to={Path.LOGIN} className="m-xl hover-primary" size="sm">
-          Login
-        </Button>
+        {!auth?.isLoggedIn && (
+          <Button to={Path.LOGIN} className="m-xl hover-primary" size="sm">
+            Login
+          </Button>
+        )}
       </div>
       <div className="full-width full-height pos fc-fs-ct mt-xl p-xl">
         <Logo className="mb-xl" />
