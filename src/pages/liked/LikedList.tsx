@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import { useEffect } from "react";
-import { SkeletonVideoCard, VideoCard } from "../../components";
+import { Button, SkeletonVideoCard, VideoCard } from "../../components";
 import { useLikes } from "../../context";
+import { Path } from "../../util/constant";
 import { getArray } from "../../util/helper";
 
 export const LikedList = () => {
@@ -35,6 +36,14 @@ export const LikedList = () => {
               <VideoCard video={video} className="m-sm" key={video._id} />
             ))}
       </div>
+      {!loading && likedVideos.length === 0 && (
+        <div className="fc-ct-ct full-height full-width">
+          <p className="mb-lg txt-xl txt-light">No Liked Videos</p>
+          <Button size="lg" to={Path.VIDEOS}>
+            Start Watching
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
