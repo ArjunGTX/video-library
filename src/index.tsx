@@ -7,8 +7,9 @@ import {
   CategoryProvider,
   HistoryProvider,
   LikesProvider,
+  VideoProvider,
+  WatchLaterProvider,
 } from "./context";
-import { VideoProvider } from "./context/VideoContext";
 import { makeServer } from "./server";
 import "./styles/index.scss";
 
@@ -25,7 +26,9 @@ root.render(
           <VideoProvider>
             <HistoryProvider>
               <LikesProvider>
-                <App />
+                <WatchLaterProvider>
+                  <App />
+                </WatchLaterProvider>
               </LikesProvider>
             </HistoryProvider>
           </VideoProvider>

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { PageWrapper } from "./components";
 import {
+  HistoryList,
   LandingPage,
   LikedList,
   Login,
@@ -8,8 +9,8 @@ import {
   SignUp,
   VideoDetails,
   VideoList,
+  WatchLaterList,
 } from "./pages";
-import { HistoryList } from "./pages/history";
 import { Path } from "./util/constant";
 
 export const App = () => {
@@ -47,6 +48,14 @@ export const App = () => {
         element={
           <PageWrapper requiresAuth>
             <HistoryList />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={Path.WATCH_LATER}
+        element={
+          <PageWrapper requiresAuth>
+            <WatchLaterList />
           </PageWrapper>
         }
       />
