@@ -8,6 +8,7 @@ export interface Video {
   creatorImage: string;
   thumbnail: string;
   category: CategoryType;
+  createdAt: number;
 }
 
 export interface ListVideoResponse {

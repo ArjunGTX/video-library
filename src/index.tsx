@@ -5,6 +5,7 @@ import { App } from "./App";
 import {
   AuthProvider,
   CategoryProvider,
+  FilterProvider,
   HistoryProvider,
   LikesProvider,
   VideoProvider,
@@ -24,13 +25,15 @@ root.render(
       <AuthProvider>
         <CategoryProvider>
           <VideoProvider>
-            <HistoryProvider>
-              <LikesProvider>
-                <WatchLaterProvider>
-                  <App />
-                </WatchLaterProvider>
-              </LikesProvider>
-            </HistoryProvider>
+            <FilterProvider>
+              <HistoryProvider>
+                <LikesProvider>
+                  <WatchLaterProvider>
+                    <App />
+                  </WatchLaterProvider>
+                </LikesProvider>
+              </HistoryProvider>
+            </FilterProvider>
           </VideoProvider>
         </CategoryProvider>
       </AuthProvider>

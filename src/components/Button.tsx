@@ -41,7 +41,7 @@ export const Button: React.FC<Props> = ({
           ? "txt-light hover-medium"
           : variant === "outlined"
           ? "bd-primary txt-primary hover-primary-outlined"
-          : "bg-primary hover-primary txt-secondary",
+          : "bg-primary hover-primary txt-secondary bd-primary",
         size ? `txt-${size}` : "txt-xs",
         variant === "icon" ? (size ? `p-${size}` : "p-xs") : `px-lg py-xs`,
         className

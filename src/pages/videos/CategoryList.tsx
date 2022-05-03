@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { useEffect } from "react";
 import { Button, SkeletonButton } from "../../components";
-import { useCategories } from "../../context";
+import { useCategories, useFilter } from "../../context";
 
 import { getArray } from "../../util/helper";
 
@@ -11,6 +11,7 @@ interface Props {
 
 export const CategoryList: React.FC<Props> = ({ className }) => {
   const { categories, loading, syncCategoriesWithServer } = useCategories();
+  const { filter, setFilter } = useFilter();
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -32,16 +33,32 @@ export const CategoryList: React.FC<Props> = ({ className }) => {
         ))
       ) : (
         <>
-          <Button variant="outlined" className="mx-md br-xl px-xl txt-no-wrap">
+          <Button
+            onClick={() => setFilter("all")}
+            variant={filter === "all" ? "contained" : "outlined"}
+            className="mx-md br-xl px-xl txt-no-wrap"
+          >
             All
           </Button>
-          <Button variant="outlined" className="mx-md br-xl px-xl txt-no-wrap">
+          <Button
+            onClick={() => setFilter("latest")}
+            variant={filter === "latest" ? "contained" : "outlined"}
+            className="mx-md br-xl px-xl txt-no-wrap"
+          >
             Latest
+          </Button>
+          <Button
+            onClick={() => setFilter("oldest")}
+            variant={filter === "oldest" ? "contained" : "outlined"}
+            className="mx-md br-xl px-xl txt-no-wrap"
+          >
+            Oldest
           </Button>
           {categories.map((category) => (
             <Button
+              onClick={() => setFilter(category.category)}
               key={category._id}
-              variant="outlined"
+              variant={filter === category.category ? "contained" : "outlined"}
               className="mx-md br-xl px-xl txt-no-wrap"
             >
               {category.categoryName}
