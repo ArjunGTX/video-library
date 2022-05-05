@@ -101,7 +101,7 @@ export const VideoActions: React.FC<Props> = ({ className, video }) => {
       <Button onClick={handleLikeChange} variant="icon" className="mx-sm">
         <AiFillLike className={clsx("txt-lg", isLiked && "txt-info")} />
       </Button>
-      <Button onClick={handleWatchLaterChange} variant="icon" className="mx-sm">
+      <Button variant="icon" className="mx-sm">
         <MdVideoLibrary className="txt-lg" />
       </Button>
       <Button onClick={handleWatchLaterChange} variant="icon" className="mx-sm">
