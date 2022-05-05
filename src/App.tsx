@@ -6,6 +6,7 @@ import {
   LikedList,
   Login,
   PageNotFound,
+  Playlists,
   SignUp,
   VideoDetails,
   VideoList,
@@ -56,6 +57,14 @@ export const App = () => {
         element={
           <PageWrapper requiresAuth>
             <WatchLaterList />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={Path.PLAYLIST}
+        element={
+          <PageWrapper requiresAuth>
+            <Playlists />
           </PageWrapper>
         }
       />

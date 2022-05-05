@@ -5,3 +5,4 @@ export * from "./videos";
 export * from "./liked";
 export * from "./history";
 export * from "./watchlater";
+export * from "./playlist";

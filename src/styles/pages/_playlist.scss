@@ -1,0 +1,15 @@
+.playlist-card {
+  height: 8rem;
+}
+
+@media screen and (min-width: 480px) {
+  .playlist-card {
+    height: 6rem;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .playlist-card {
+    height: 6rem;
+  }
+}
