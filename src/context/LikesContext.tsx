@@ -25,7 +25,7 @@ export const LikesProvider: React.FC<Props> = ({ children }) => {
 
   const getLikedVideosRequest = async () => {
     if (Date.now() - lastUpdated < Constant.LIKES_REFRESH_INTERVAL) return;
-    setLoading(true);
+    lastUpdated === 0 && setLoading(true);
     try {
       const { status, data } = await api.getLikes();
       if (status !== 200) return;

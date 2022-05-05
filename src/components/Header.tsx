@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import { GoSearch } from "react-icons/go";
-import { FiLogOut } from "react-icons/fi";
+import { BiLogOut, BiLogIn } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { Logo } from "./Logo";
 import { TextInput } from "./TextInput";
 import { Avatar } from "./Avatar";
 import { useAuth } from "../context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Path } from "../util/constant";
 import { Button } from "./Button";
 
@@ -42,14 +42,17 @@ export const Header: React.FC<Props> = ({ className }) => {
         {auth?.isLoggedIn ? (
           <button
             onClick={handleLogout}
-            className="txt-light hover-icon-primary fr-ct-ct txt-lg mx-md"
+            className="txt-light hover-icon-primary fr-ct-ct txt-xl mx-md"
           >
-            <FiLogOut />
+            <BiLogOut />
           </button>
         ) : (
-          <Button variant="plain" color="primary" to={Path.LOGIN}>
-            Login
-          </Button>
+          <Link
+            to={Path.LOGIN}
+            className="txt-light hover-icon-primary fr-ct-ct txt-xl mx-md"
+          >
+            <BiLogIn />
+          </Link>
         )}
         <button className="txt-light mx-sm fr-ct-ct">
           {auth?.isLoggedIn ? (
