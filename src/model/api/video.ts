@@ -1,18 +1,24 @@
 import * as api from ".";
 import {
-  AddHistoryResponse,
   AddLikeResponse,
+  CreatePlaylistResponse,
   AddWatchLaterResponse,
   ClearHistoryResponse,
   DeleteHistoryResponse,
   DeleteLikeResponse,
+  DeletePlaylistResponse,
   DeleteWatchLaterResponse,
   GetVideoInfoResponse,
   ListHistoryResponse,
   ListLikeResponse,
+  ListPlaylistResponse,
   ListVideoResponse,
   ListWatchLaterResponse,
   Video,
+  AddHistoryResponse,
+  GetPlaylistInfoResponse,
+  AddToPlaylistResponse,
+  RemoveFromPlaylistResponse,
 } from "../type";
 
 export const getVideos = async () =>
@@ -63,3 +69,36 @@ export const removeFromHistory = async (videoId: string) =>
 
 export const clearHistory = async () =>
   await api.axiosDelete<ClearHistoryResponse>(`/api/user/history/all`, true);
+
+export const getPlaylist = async () =>
+  await api.axiosGet<ListPlaylistResponse>(`/api/user/playlists`, true);
+
+export const getPlaylistInfo = async (playlistId: string) =>
+  await api.axiosGet<GetPlaylistInfoResponse>(
+    `/api/user/playlists/${playlistId}`,
+    true
+  );
+
+export const createPlaylist = async (title: string) =>
+  await api.axiosPost<CreatePlaylistResponse>(`/api/user/playlists`, true, {
+    title,
+  });
+
+export const deletePlaylist = async (playlistId: string) =>
+  await api.axiosDelete<DeletePlaylistResponse>(
+    `/api/user/playlists/${playlistId}`,
+    true
+  );
+
+export const addToPlaylist = async (playlistId: string, video: Video) =>
+  await api.axiosPost<AddToPlaylistResponse>(
+    `/api/user/playlists/${playlistId}`,
+    true,
+    video
+  );
+
+export const removeFromPlaylist = async (playlistId: string, videoId: string) =>
+  await api.axiosDelete<RemoveFromPlaylistResponse>(
+    `/api/user/playlists/${playlistId}/${videoId}`,
+    true
+  );

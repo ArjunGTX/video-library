@@ -8,6 +8,7 @@ import {
   FilterProvider,
   HistoryProvider,
   LikesProvider,
+  PlaylistProvider,
   VideoProvider,
   WatchLaterProvider,
 } from "./context";
@@ -29,7 +30,9 @@ root.render(
               <HistoryProvider>
                 <LikesProvider>
                   <WatchLaterProvider>
-                    <App />
+                    <PlaylistProvider>
+                      <App />
+                    </PlaylistProvider>
                   </WatchLaterProvider>
                 </LikesProvider>
               </HistoryProvider>

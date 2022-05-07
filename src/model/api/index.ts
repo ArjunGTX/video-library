@@ -19,14 +19,14 @@ export const axiosGet = async <T>(url: string, requireAuth: boolean) => {
 export const axiosPost = async <T>(
   url: string,
   requireAuth: boolean,
-  video?: any
+  data?: any
 ) => {
   if (requireAuth) {
     const token = getAccessToken();
     if (!token) return Promise.reject(Error("Invalid AccessToken"));
-    return await axios.post<T>(url, { video }, createConfig(token));
+    return await axios.post<T>(url, { data }, createConfig(token));
   }
-  return await axios.post<T>(url, video);
+  return await axios.post<T>(url, data);
 };
 
 export const axiosDelete = async <T>(url: string, requireAuth: boolean) => {

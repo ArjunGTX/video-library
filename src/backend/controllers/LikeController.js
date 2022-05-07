@@ -44,8 +44,8 @@ export const getLikedVideosHandler = function (schema, request) {
 export const addItemToLikedVideos = function (schema, request) {
   const user = requiresAuth.call(this, request);
   if (user) {
-    const { video } = JSON.parse(request.requestBody);
-    if (user.likes.some((item) => item.id === video.id)) {
+    const { data } = JSON.parse(request.requestBody);
+    if (user.likes.some((item) => item.id === data.id)) {
       return new Response(
         409,
         {},
@@ -54,7 +54,7 @@ export const addItemToLikedVideos = function (schema, request) {
         }
       );
     }
-    user.likes.push(video);
+    user.likes.push(data);
     return new Response(201, {}, { likes: user.likes });
   }
   return new Response(

@@ -11,6 +11,12 @@ export interface Video {
   createdAt: number;
 }
 
+export interface Playlist {
+  _id: string;
+  title: string;
+  videos: Video[];
+}
+
 export interface ListVideoResponse {
   videos: Video[];
 }
@@ -57,4 +63,28 @@ export interface DeleteHistoryResponse {
 
 export interface ClearHistoryResponse {
   history: Video[];
+}
+
+export interface ListPlaylistResponse {
+  playlists: Playlist[];
+}
+
+export interface GetPlaylistInfoResponse {
+  playlist: Playlist;
+}
+
+export interface CreatePlaylistResponse {
+  playlists: Playlist[];
+}
+
+export interface DeletePlaylistResponse {
+  playlists: Playlist[];
+}
+
+export interface AddToPlaylistResponse {
+  playlists: Playlist[];
+}
+
+export interface RemoveFromPlaylistResponse {
+  playlists: Playlist[];
 }
