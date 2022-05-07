@@ -1,9 +1,8 @@
-export enum CategoryType {
-  EARGASM = "eargasm",
-  REVIEW = "review",
-  ADRENALINE_RUSH = "adrenaline-rush",
-  ISLE_OF_MAN = "isle-of-man",
-}
+export type CategoryType =
+  | "eargasm"
+  | "review"
+  | "adrenaline-rush"
+  | "isle-of-man";
 
 export interface Category {
   _id: string;
