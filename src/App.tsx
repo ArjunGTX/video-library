@@ -7,6 +7,7 @@ import {
   Login,
   PageNotFound,
   Playlists,
+  PlaylistInfo,
   SignUp,
   VideoDetails,
   VideoList,
@@ -65,6 +66,14 @@ export const App = () => {
         element={
           <PageWrapper requiresAuth>
             <Playlists />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={`${Path.PLAYLIST}/:playlistId`}
+        element={
+          <PageWrapper requiresAuth>
+            <PlaylistInfo />
           </PageWrapper>
         }
       />
