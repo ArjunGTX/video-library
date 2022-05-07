@@ -1,23 +1,23 @@
 .playlist-card {
-  height: 8rem;
+  min-height: 10rem;
 }
 .playlist-modal {
-  width: 90vw;
-  max-height: 25rem;
+  width: 70vw;
+  max-height: 24rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  & li button {
+  & li > button {
     border: 2px solid transparent;
   }
-  & li button:hover {
+  & li > button:hover {
     border: 2px solid map-get($background-colors, "primary" );
   }
 }
 
 @media screen and (min-width: 480px) {
   .playlist-card {
-    height: 6rem;
+    min-height: 8rem;
   }
   .playlist-modal {
     width: 60vw;
@@ -26,9 +26,9 @@
 
 @media screen and (min-width: 640px) {
   .playlist-card {
-    height: 6rem;
+    min-height: 8rem;
   }
   .playlist-modal {
-    width: 25rem;
+    width: 24rem;
   }
 }

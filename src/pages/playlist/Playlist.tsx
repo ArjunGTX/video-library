@@ -1,17 +1,34 @@
 import clsx from "clsx";
-import { SkeletonPlaylistCard } from "../../components";
-import { Playlist } from "../../model/type";
+import { useEffect, useState } from "react";
+import { Button, SkeletonPlaylistCard } from "../../components";
+import { usePlaylist } from "../../context";
 import { getArray } from "../../util/helper";
 import { PlaylistCard } from "./PlaylistCard";
+import { HiPlus } from "react-icons/hi";
+import { PlaylistModal } from "./PlaylistModal";
 
 export const Playlists = () => {
-  const playlists: Playlist[] = [];
-  const loading = false;
+  const { playlists, syncPlaylistWithServer, loading } = usePlaylist();
+
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    syncPlaylistWithServer();
+  }, []);
 
   return (
     <div className="full-width full-height pos-rel of-hidden">
+      {showModal && (
+        <PlaylistModal createModal onClose={() => setShowModal(false)} />
+      )}
       <div className="fr-fs-ct full-width p-xl">
         <h2 className="txt-lg txt-light font-medium mx-sm">PLAYLISTS</h2>
+        <Button
+          onClick={() => setShowModal(true)}
+          className={clsx("ml-md", showModal && "no-events")}
+        >
+          <HiPlus className="txt-md" />
+        </Button>
       </div>
       <div
         className={clsx(
@@ -26,7 +43,7 @@ export const Playlists = () => {
           ? getArray(24).map((item) => (
               <SkeletonPlaylistCard className="m-sm" key={item} />
             ))
-          : playlists.map((playlist) => (
+          : playlists?.map((playlist) => (
               <PlaylistCard
                 playlist={playlist}
                 className="m-sm"

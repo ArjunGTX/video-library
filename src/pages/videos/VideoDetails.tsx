@@ -57,7 +57,12 @@ export const VideoDetails = () => {
       {!loading ? (
         videoInfo ? (
           <div className="fc-fs-fs pos-rel">
-            {showModal && <PlaylistModal onClose={() => setShowModal(false)} />}
+            {showModal && videoId && (
+              <PlaylistModal
+                video={videoInfo}
+                onClose={() => setShowModal(false)}
+              />
+            )}
             <iframe
               className="frame"
               title="YouTube video player"
