@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Logo, TextInput } from "../../components";
-import { Constant, Path } from "../../util/constant";
+import { Alert, Button, Loader, Logo, TextInput } from "../../components";
+import { Constant, Path, ToastError, ToastSuccess } from "../../util/constant";
 import * as api from "../../model/api";
 import * as validate from "../../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useAuth } from "../../context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const SignUp = () => {
   const { auth, setAuth } = useAuth();
@@ -58,8 +59,9 @@ export const SignUp = () => {
       });
       localStorage.setItem(Constant.ACCESS_TOKEN, data.encodedToken);
       navigate(Path.HOME);
+      toast.success(ToastSuccess.SIGN_UP);
     } catch (error) {
-      console.log(error);
+      toast.error(ToastError.SIGN_UP);
     } finally {
       setLoading(false);
     }
@@ -210,6 +212,7 @@ export const SignUp = () => {
           </div>
         </form>
       </div>
+      {loading && <Loader />}
     </div>
   );
 };

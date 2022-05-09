@@ -1,0 +1,52 @@
+.loader {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bg-backdrop {
+  z-index: 50;
+  background-color: #00000080;
+  backdrop-filter: blur(9px);
+  &.backdrop-medium {
+    backdrop-filter: blur(6px);
+  }
+  &.backdrop-light {
+    backdrop-filter: blur(3px);
+  }
+}
+.spinner {
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 3px solid map-get($background-colors, "primary");
+  border-bottom-color: transparent;
+  position: relative;
+  animation: spin 1s linear infinite;
+  &-xl {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  &-lg {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+  &-md {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  &-sm {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  &-xs {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}

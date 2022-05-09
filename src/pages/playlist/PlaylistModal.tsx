@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, Button, TextInput } from "../../components";
+import { Alert, Button, Loader, TextInput } from "../../components";
 import { SkeletonPlaylistTitle } from "../../components/skeleton/SkeletonPlaylistTitle";
 import { usePlaylist } from "../../context";
 import { useClickOutside } from "../../hooks";
@@ -8,6 +8,8 @@ import * as api from "../../model/api";
 import { Video } from "../../model/type";
 import { getArray } from "../../util/helper";
 import { BsTrashFill } from "react-icons/bs";
+import toast from "react-hot-toast";
+import { ToastError, ToastSuccess } from "../../util/constant";
 
 interface Props {
   className?: string;
@@ -25,6 +27,8 @@ export const PlaylistModal: React.FC<Props> = ({
   const { playlists, syncPlaylistWithServer, loading } = usePlaylist();
   const modalRef = useRef<HTMLDivElement>(null);
 
+  const [actionLoading, setActionLoading] = useState(false);
+
   useClickOutside(modalRef, onClose);
 
   const [playlistInputs, setPlaylistInputs] = useState({
@@ -40,37 +44,49 @@ export const PlaylistModal: React.FC<Props> = ({
 
   const createPlaylistRequest = async () => {
     if (!validateInputs()) return;
+    setActionLoading(true);
     try {
       const { status } = await api.createPlaylist(playlistInputs.title);
       if (status !== 201) return;
       syncPlaylistWithServer();
       setPlaylistInputs({ title: "" });
+      toast.success(ToastSuccess.PLAYLIST_CREATE);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.PLAYLIST_CREATE);
+    } finally {
+      setActionLoading(false);
     }
   };
 
   const addToPlaylistRequest = async (playlistId: string) => {
     if (!video) return;
+    setActionLoading(true);
     try {
       const { status } = await api.addToPlaylist(playlistId, video);
       if (status !== 201) return;
       syncPlaylistWithServer();
       onClose();
+      toast.success(ToastSuccess.ADD_TO_PLAYLIST);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.ADD_TO_PLAYLIST);
+    } finally {
+      setActionLoading(false);
     }
   };
 
   const removeFromPlaylistRequest = async (playlistId: string) => {
     if (!video) return;
+    setActionLoading(true);
     try {
       const { status } = await api.removeFromPlaylist(playlistId, video._id);
       if (status !== 200) return;
       syncPlaylistWithServer();
       onClose();
+      toast.success(ToastSuccess.REMOVE_FROM_PLAYLIST);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.REMOVE_FROM_PLAYLIST);
+    } finally {
+      setActionLoading(false);
     }
   };
 
@@ -189,6 +205,7 @@ export const PlaylistModal: React.FC<Props> = ({
           <Button>Add</Button>
         </div>
       </form>
+      {actionLoading && <Loader />}
     </div>
   );
 };

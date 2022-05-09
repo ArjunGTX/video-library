@@ -8,3 +8,4 @@ export * from "./Avatar";
 export * from "./SideNav";
 export * from "./VideoCard";
 export * from "./skeleton";
+export * from "./Loader";

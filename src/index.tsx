@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import {
@@ -32,6 +33,17 @@ root.render(
                   <WatchLaterProvider>
                     <PlaylistProvider>
                       <App />
+                      <Toaster
+                        position="bottom-left"
+                        toastOptions={{
+                          className: "",
+                          duration: 3000,
+                          style: {
+                            background: "#1a2029",
+                            color: "#fff",
+                          },
+                        }}
+                      />
                     </PlaylistProvider>
                   </WatchLaterProvider>
                 </LikesProvider>

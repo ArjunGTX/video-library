@@ -7,8 +7,9 @@ import { TextInput } from "./TextInput";
 import { Avatar } from "./Avatar";
 import { useAuth } from "../context";
 import { Link, useNavigate } from "react-router-dom";
-import { Path } from "../util/constant";
+import { Path, ToastSuccess } from "../util/constant";
 import { Button } from "./Button";
+import toast from "react-hot-toast";
 
 interface Props {
   className?: string;
@@ -21,6 +22,7 @@ export const Header: React.FC<Props> = ({ className }) => {
   const handleLogout = () => {
     setAuth(null);
     navigate(Path.LOGIN);
+    toast.success(ToastSuccess.LOG_OUT);
   };
 
   return (
