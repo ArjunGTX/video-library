@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
-import { Button, Loader, SkeletonVideoCard, VideoCard } from "../../components";
-import { useHistory } from "../../context";
+import { useEffect } from "react";
+import { Button, SkeletonVideoCard, VideoCard } from "../../components";
+import { useHistory, useLoader } from "../../context";
 import { getArray } from "../../util/helper";
 import * as api from "../../model/api";
 import { BsTrashFill } from "react-icons/bs";
@@ -9,9 +9,8 @@ import toast from "react-hot-toast";
 import { ToastError, ToastSuccess } from "../../util/constant";
 
 export const HistoryList = () => {
+  const loader = useLoader();
   const { history, loading, syncHistoryWithServer } = useHistory();
-
-  const [actionLoading, setActionLoading] = useState(false);
 
   useEffect(() => {
     if (history.length === 0) {
@@ -20,7 +19,7 @@ export const HistoryList = () => {
   }, [history]);
 
   const removeFromHistoryRequest = async (videoId: string) => {
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.removeFromHistory(videoId);
       if (status !== 200) return;
@@ -29,12 +28,12 @@ export const HistoryList = () => {
     } catch (error) {
       toast.error(ToastError.REMOVE_FROM_HISTORY);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
   const clearHistoryRequest = async () => {
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.clearHistory();
       if (status !== 200) return;
@@ -43,7 +42,7 @@ export const HistoryList = () => {
     } catch (error) {
       toast.error(ToastError.CLEAR_HISTORY);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
@@ -91,7 +90,6 @@ export const HistoryList = () => {
           <p className="mb-lg txt-xl txt-light">History is Empty</p>
         </div>
       )}
-      {actionLoading && <Loader />}
     </div>
   );
 };

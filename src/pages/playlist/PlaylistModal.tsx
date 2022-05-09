@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, Button, Loader, TextInput } from "../../components";
+import { Alert, Button, TextInput } from "../../components";
 import { SkeletonPlaylistTitle } from "../../components/skeleton/SkeletonPlaylistTitle";
-import { usePlaylist } from "../../context";
+import { useLoader, usePlaylist } from "../../context";
 import { useClickOutside } from "../../hooks";
 import * as api from "../../model/api";
 import { Video } from "../../model/type";
@@ -24,10 +24,9 @@ export const PlaylistModal: React.FC<Props> = ({
   video,
   createModal,
 }) => {
+  const loader = useLoader();
   const { playlists, syncPlaylistWithServer, loading } = usePlaylist();
   const modalRef = useRef<HTMLDivElement>(null);
-
-  const [actionLoading, setActionLoading] = useState(false);
 
   useClickOutside(modalRef, onClose);
 
@@ -44,7 +43,7 @@ export const PlaylistModal: React.FC<Props> = ({
 
   const createPlaylistRequest = async () => {
     if (!validateInputs()) return;
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.createPlaylist(playlistInputs.title);
       if (status !== 201) return;
@@ -54,13 +53,13 @@ export const PlaylistModal: React.FC<Props> = ({
     } catch (error) {
       toast.error(ToastError.PLAYLIST_CREATE);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
   const addToPlaylistRequest = async (playlistId: string) => {
     if (!video) return;
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.addToPlaylist(playlistId, video);
       if (status !== 201) return;
@@ -70,13 +69,13 @@ export const PlaylistModal: React.FC<Props> = ({
     } catch (error) {
       toast.error(ToastError.ADD_TO_PLAYLIST);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
   const removeFromPlaylistRequest = async (playlistId: string) => {
     if (!video) return;
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.removeFromPlaylist(playlistId, video._id);
       if (status !== 200) return;
@@ -86,7 +85,7 @@ export const PlaylistModal: React.FC<Props> = ({
     } catch (error) {
       toast.error(ToastError.REMOVE_FROM_PLAYLIST);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
@@ -205,7 +204,6 @@ export const PlaylistModal: React.FC<Props> = ({
           <Button>Add</Button>
         </div>
       </form>
-      {actionLoading && <Loader />}
     </div>
   );
 };

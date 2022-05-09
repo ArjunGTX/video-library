@@ -11,8 +11,9 @@ export const Loader: React.FC<Props> = ({ className, size, variant }) => {
   return (
     <div
       className={clsx(
-        "pos-fix loader bg-backdrop fr-ct-ct",
-        variant && `backdrop-${variant}`,className
+        "pos-fix loader bg-backdrop fr-ct-ct z-400",
+        variant && `backdrop-${variant}`,
+        className
       )}
     >
       <div

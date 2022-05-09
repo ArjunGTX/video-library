@@ -9,6 +9,7 @@ import {
   FilterProvider,
   HistoryProvider,
   LikesProvider,
+  LoaderProvider,
   PlaylistProvider,
   VideoProvider,
   WatchLaterProvider,
@@ -32,18 +33,20 @@ root.render(
                 <LikesProvider>
                   <WatchLaterProvider>
                     <PlaylistProvider>
-                      <App />
-                      <Toaster
-                        position="bottom-left"
-                        toastOptions={{
-                          className: "",
-                          duration: 3000,
-                          style: {
-                            background: "#1a2029",
-                            color: "#fff",
-                          },
-                        }}
-                      />
+                      <LoaderProvider>
+                        <App />
+                        <Toaster
+                          position="bottom-left"
+                          toastOptions={{
+                            className: "",
+                            duration: 3000,
+                            style: {
+                              background: "#1a2029",
+                              color: "#fff",
+                            },
+                          }}
+                        />
+                      </LoaderProvider>
                     </PlaylistProvider>
                   </WatchLaterProvider>
                 </LikesProvider>

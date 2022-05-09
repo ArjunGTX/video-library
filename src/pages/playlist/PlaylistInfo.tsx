@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Button,
-  Loader,
   SkeletonButton,
   SkeletonText,
   SkeletonVideoCard,
@@ -13,18 +12,18 @@ import { getArray } from "../../util/helper";
 import * as api from "../../model/api";
 import { Playlist } from "../../model/type";
 import { BsTrashFill } from "react-icons/bs";
-import { usePlaylist } from "../../context";
+import { useLoader, usePlaylist } from "../../context";
 import { Path, ToastError, ToastSuccess } from "../../util/constant";
 import { HiPlus } from "react-icons/hi";
 import toast from "react-hot-toast";
 
 export const PlaylistInfo = () => {
+  const loader = useLoader();
   const navigate = useNavigate();
   const { playlistId } = useParams();
   const { syncPlaylistWithServer } = usePlaylist();
 
   const [loading, setLoading] = useState(false);
-  const [actionLoading, setActionLoading] = useState(false);
   const [playlistInfo, setPlaylistInfo] = useState<Playlist>();
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export const PlaylistInfo = () => {
 
   const removeFromPlaylistRequest = async (videoId: string) => {
     if (!playlistId) return;
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.removeFromPlaylist(playlistId, videoId);
       if (status !== 200) return;
@@ -59,13 +58,13 @@ export const PlaylistInfo = () => {
     } catch (error) {
       toast.error(ToastError.REMOVE_FROM_PLAYLIST);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
   const deletePlaylistRequest = async () => {
     if (!playlistId) return;
-    setActionLoading(true);
+    loader.start();
     try {
       const { status } = await api.deletePlaylist(playlistId);
       if (status !== 200) return;
@@ -75,7 +74,7 @@ export const PlaylistInfo = () => {
     } catch (error) {
       toast.error(ToastError.PLAYLIST_DELETE);
     } finally {
-      setActionLoading(false);
+      loader.stop();
     }
   };
 
@@ -144,7 +143,6 @@ export const PlaylistInfo = () => {
           <p className="mb-lg txt-xl txt-light">No Videos</p>
         </div>
       )}
-      {actionLoading && <Loader />}
     </div>
   );
 };

@@ -1,13 +1,12 @@
 import clsx from "clsx";
-import React, { useState } from "react";
-import { Button, Loader } from "../../components";
+import { Button } from "../../components";
 import { Playlist } from "../../model/type";
 import { getImageUrl } from "../../util/helper";
 import { BsTrashFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { Path, ToastError, ToastSuccess } from "../../util/constant";
 import * as api from "../../model/api";
-import { usePlaylist } from "../../context";
+import { useLoader, usePlaylist } from "../../context";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -16,10 +15,9 @@ interface Props {
 }
 
 export const PlaylistCard: React.FC<Props> = ({ className, playlist }) => {
+  const loader = useLoader();
   const navigate = useNavigate();
   const { syncPlaylistWithServer } = usePlaylist();
-
-  const [loading, setLoading] = useState(false);
 
   const getVideoLength = () => {
     const {
@@ -30,7 +28,7 @@ export const PlaylistCard: React.FC<Props> = ({ className, playlist }) => {
   };
 
   const deletePlaylistRequest = async () => {
-    setLoading(true);
+    loader.start();
     try {
       const { status } = await api.deletePlaylist(playlist._id);
       if (status !== 200) return;
@@ -39,7 +37,7 @@ export const PlaylistCard: React.FC<Props> = ({ className, playlist }) => {
     } catch (error) {
       toast.error(ToastError.PLAYLIST_DELETE);
     } finally {
-      setLoading(false);
+      loader.stop();
     }
   };
 
@@ -74,7 +72,6 @@ export const PlaylistCard: React.FC<Props> = ({ className, playlist }) => {
           <BsTrashFill className="txt-md" />
         </Button>
       </div>
-      {loading && <Loader />}
     </div>
   );
 };
