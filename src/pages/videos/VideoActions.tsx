@@ -7,7 +7,7 @@ import { useAuth, useLikes, useLoader, useWatchLater } from "../../context";
 import { Video } from "../../model/type";
 import { Path, ToastError, ToastSuccess } from "../../util/constant";
 import * as api from "../../model/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -29,12 +29,18 @@ export const VideoActions: React.FC<Props> = ({
   const { watchLater, syncWatchLaterWithServer } = useWatchLater();
   const { auth } = useAuth();
 
-  const [isLiked, setIsLiked] = useState(
-    likedVideos.some((likedVideo) => likedVideo._id === video._id)
-  );
-  const [isWatchLater, setIsWatchLater] = useState(
-    watchLater.some((laterVideo) => laterVideo._id === video._id)
-  );
+  const [isLiked, setIsLiked] = useState(false);
+  const [isWatchLater, setIsWatchLater] = useState(false);
+
+  useEffect(() => {
+    setIsLiked(likedVideos.some((likedVideo) => likedVideo._id === video._id));
+  }, [likedVideos, video]);
+
+  useEffect(() => {
+    setIsWatchLater(
+      watchLater.some((laterVideo) => laterVideo._id === video._id)
+    );
+  }, [watchLater, video]);
 
   const likeVideoRequest = async () => {
     loader.start();
