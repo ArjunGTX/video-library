@@ -12,9 +12,16 @@ import { useState } from "react";
 interface Props {
   className?: string;
   video: Video;
+  togglePlaylistModal: () => void;
+  showPlaylistModal: boolean;
 }
 
-export const VideoActions: React.FC<Props> = ({ className, video }) => {
+export const VideoActions: React.FC<Props> = ({
+  className,
+  video,
+  togglePlaylistModal,
+  showPlaylistModal,
+}) => {
   const navigate = useNavigate();
   const { likedVideos, syncLikesWithServer } = useLikes();
   const { watchLater, syncWatchLaterWithServer } = useWatchLater();
@@ -101,7 +108,11 @@ export const VideoActions: React.FC<Props> = ({ className, video }) => {
       <Button onClick={handleLikeChange} variant="icon" className="mx-sm">
         <AiFillLike className={clsx("txt-lg", isLiked && "txt-info")} />
       </Button>
-      <Button variant="icon" className="mx-sm">
+      <Button
+        onClick={togglePlaylistModal}
+        variant="icon"
+        className={clsx("mx-sm", showPlaylistModal && "no-events")}
+      >
         <MdVideoLibrary className="txt-lg" />
       </Button>
       <Button onClick={handleWatchLaterChange} variant="icon" className="mx-sm">

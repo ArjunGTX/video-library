@@ -14,6 +14,5 @@ export type Color =
 export type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 export * from "./category";
-export * from "./playlist";
 export * from "./video";
 export * from "./auth";

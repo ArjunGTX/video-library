@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Avatar,
@@ -13,6 +13,7 @@ import { getArray, getVideoUrl } from "../../util/helper";
 import { VideoActions } from "./VideoActions";
 import * as api from "../../model/api";
 import { useHistory } from "../../context";
+import { PlaylistModal } from "../playlist";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
@@ -22,6 +23,8 @@ export const VideoDetails = () => {
   const videoInfo = videos.find((video) => video._id === videoId);
 
   const suggestedVideos = videos.filter((video) => video._id !== videoId);
+
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (videos.length === 0) {
@@ -36,7 +39,7 @@ export const VideoDetails = () => {
     if (!videoInfo || history.some((video) => video._id === videoInfo._id))
       return;
     try {
-      const { status, data } = await api.addToHistory(videoInfo);
+      const { status } = await api.addToHistory(videoInfo);
       if (status !== 201) return;
       syncHistoryWithServer();
     } catch (error) {
@@ -53,7 +56,13 @@ export const VideoDetails = () => {
     >
       {!loading ? (
         videoInfo ? (
-          <div className="fc-fs-fs">
+          <div className="fc-fs-fs pos-rel">
+            {showModal && videoId && (
+              <PlaylistModal
+                video={videoInfo}
+                onClose={() => setShowModal(false)}
+              />
+            )}
             <iframe
               className="frame"
               title="YouTube video player"
@@ -65,7 +74,11 @@ export const VideoDetails = () => {
             <div className="fc-fs-fs p-xl">
               <div className="fr-sb-fs full-width">
                 <h5 className="txt-lg mr-md">{videoInfo.title}</h5>
-                <VideoActions video={videoInfo} />
+                <VideoActions
+                  showPlaylistModal={showModal}
+                  togglePlaylistModal={() => setShowModal(!showModal)}
+                  video={videoInfo}
+                />
               </div>
               <div className="fr-fs-ct py-md">
                 {videoInfo && (

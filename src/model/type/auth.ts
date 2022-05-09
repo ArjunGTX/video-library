@@ -1,5 +1,4 @@
-import { Playlist } from "./playlist";
-import { Video } from "./video";
+import { Playlist, Video } from "./video";
 
 export interface Auth {
   isLoggedIn: boolean;
