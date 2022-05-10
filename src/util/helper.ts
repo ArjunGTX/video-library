@@ -12,6 +12,13 @@ export const getImageUrl = (videoId: string) =>
 export const getVideoUrl = (videoId: string) =>
   `https://www.youtube-nocookie.com/embed/${videoId}/?autoplay=1`;
 
+export const getSearchedVideos = (videos: Video[], query: string) =>
+  videos.filter(
+    (video) =>
+      video.title.toLowerCase().includes(query.toLowerCase()) ||
+      video.description.toLowerCase().includes(query.toLowerCase())
+  );
+
 export const getFilteredVideos = (videos: Video[], filter: Filter): Video[] => {
   if (filter === "latest")
     return [...videos].sort(

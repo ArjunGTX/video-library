@@ -5,10 +5,9 @@ import { FaUserCircle } from "react-icons/fa";
 import { Logo } from "./Logo";
 import { TextInput } from "./TextInput";
 import { Avatar } from "./Avatar";
-import { useAuth } from "../context";
+import { useAuth, useFilter } from "../context";
 import { Link, useNavigate } from "react-router-dom";
 import { Path, ToastSuccess } from "../util/constant";
-import { Button } from "./Button";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -18,12 +17,16 @@ interface Props {
 export const Header: React.FC<Props> = ({ className }) => {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
+  const { query, onQueryChange } = useFilter();
 
   const handleLogout = () => {
     setAuth(null);
     navigate(Path.LOGIN);
     toast.success(ToastSuccess.LOG_OUT);
   };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    onQueryChange(e.target.value);
 
   return (
     <header
@@ -34,7 +37,12 @@ export const Header: React.FC<Props> = ({ className }) => {
     >
       <Logo className="txt-xxl mx-xl" />
       <div className="fr-ct-ct half-width search px-xl mx-auto">
-        <TextInput placeholder="Search Videos..." className="txt-light">
+        <TextInput
+          value={query}
+          onChange={handleSearchChange}
+          placeholder="Search Videos..."
+          className="txt-light"
+        >
           <button className="txt-light hover-icon-primary fr-ct-ct">
             <GoSearch className="txt-sm" />
           </button>
