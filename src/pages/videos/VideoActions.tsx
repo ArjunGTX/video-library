@@ -3,11 +3,12 @@ import { AiFillLike } from "react-icons/ai";
 import { MdVideoLibrary, MdWatchLater } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components";
-import { useAuth, useLikes, useWatchLater } from "../../context";
+import { useAuth, useLikes, useLoader, useWatchLater } from "../../context";
 import { Video } from "../../model/type";
-import { Path } from "../../util/constant";
+import { Path, ToastError, ToastSuccess } from "../../util/constant";
 import * as api from "../../model/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface Props {
   className?: string;
@@ -23,59 +24,80 @@ export const VideoActions: React.FC<Props> = ({
   showPlaylistModal,
 }) => {
   const navigate = useNavigate();
+  const loader = useLoader();
   const { likedVideos, syncLikesWithServer } = useLikes();
   const { watchLater, syncWatchLaterWithServer } = useWatchLater();
   const { auth } = useAuth();
 
-  const [isLiked, setIsLiked] = useState(
-    likedVideos.some((likedVideo) => likedVideo._id === video._id)
-  );
+  const [isLiked, setIsLiked] = useState(false);
+  const [isWatchLater, setIsWatchLater] = useState(false);
 
-  const [isWatchLater, setIsWatchLater] = useState(
-    watchLater.some((laterVideo) => laterVideo._id === video._id)
-  );
+  useEffect(() => {
+    setIsLiked(likedVideos.some((likedVideo) => likedVideo._id === video._id));
+  }, [likedVideos, video]);
+
+  useEffect(() => {
+    setIsWatchLater(
+      watchLater.some((laterVideo) => laterVideo._id === video._id)
+    );
+  }, [watchLater, video]);
 
   const likeVideoRequest = async () => {
+    loader.start();
     try {
       const { status, data } = await api.addToLikes(video);
       if (status !== 201) return;
       syncLikesWithServer();
       setIsLiked(true);
+      toast.success(ToastSuccess.LIKE);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.LIKE);
+    } finally {
+      loader.stop();
     }
   };
 
   const removeLikeRequest = async () => {
+    loader.start();
     try {
       const { status } = await api.removeFromLikes(video._id);
       if (status !== 200) return;
       syncLikesWithServer();
       setIsLiked(false);
+      toast.success(ToastSuccess.UNLIKE);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.UNLIKE);
+    } finally {
+      loader.stop();
     }
   };
 
   const addToWatchLaterRequest = async () => {
+    loader.start();
     try {
       const { status } = await api.addToWatchLater(video);
       if (status !== 201) return;
       syncWatchLaterWithServer();
       setIsWatchLater(true);
+      toast.success(ToastSuccess.ADD_TO_WATCH_LATER);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.ADD_TO_WATCH_LATER);
+    } finally {
+      loader.stop();
     }
   };
 
   const removeFromWatchLaterRequest = async () => {
+    loader.start();
     try {
       const { status } = await api.removeFromWatchLater(video._id);
       if (status !== 200) return;
       syncWatchLaterWithServer();
       setIsWatchLater(false);
+      toast.success(ToastSuccess.REMOVE_FROM_WATCH_LATER);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.REMOVE_FROM_WATCH_LATER);
+      loader.stop();
     }
   };
 

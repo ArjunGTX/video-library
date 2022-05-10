@@ -1,13 +1,13 @@
 import clsx from "clsx";
-import React from "react";
 import { Button } from "../../components";
 import { Playlist } from "../../model/type";
 import { getImageUrl } from "../../util/helper";
 import { BsTrashFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { Path } from "../../util/constant";
+import { Path, ToastError, ToastSuccess } from "../../util/constant";
 import * as api from "../../model/api";
-import { usePlaylist } from "../../context";
+import { useLoader, usePlaylist } from "../../context";
+import toast from "react-hot-toast";
 
 interface Props {
   className?: string;
@@ -15,9 +15,10 @@ interface Props {
 }
 
 export const PlaylistCard: React.FC<Props> = ({ className, playlist }) => {
+  const loader = useLoader();
   const navigate = useNavigate();
-
   const { syncPlaylistWithServer } = usePlaylist();
+
   const getVideoLength = () => {
     const {
       videos: { length },
@@ -27,12 +28,16 @@ export const PlaylistCard: React.FC<Props> = ({ className, playlist }) => {
   };
 
   const deletePlaylistRequest = async () => {
+    loader.start();
     try {
       const { status } = await api.deletePlaylist(playlist._id);
       if (status !== 200) return;
       syncPlaylistWithServer();
+      toast.success(ToastSuccess.PLAYLIST_DELETE);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.PLAYLIST_DELETE);
+    } finally {
+      loader.stop();
     }
   };
 

@@ -1,12 +1,15 @@
 import clsx from "clsx";
 import { useEffect } from "react";
 import { Button, SkeletonVideoCard, VideoCard } from "../../components";
-import { useHistory } from "../../context";
+import { useHistory, useLoader } from "../../context";
 import { getArray } from "../../util/helper";
 import * as api from "../../model/api";
 import { BsTrashFill } from "react-icons/bs";
+import toast from "react-hot-toast";
+import { ToastError, ToastSuccess } from "../../util/constant";
 
 export const HistoryList = () => {
+  const loader = useLoader();
   const { history, loading, syncHistoryWithServer } = useHistory();
 
   useEffect(() => {
@@ -16,22 +19,30 @@ export const HistoryList = () => {
   }, [history]);
 
   const removeFromHistoryRequest = async (videoId: string) => {
+    loader.start();
     try {
       const { status } = await api.removeFromHistory(videoId);
       if (status !== 200) return;
       syncHistoryWithServer();
+      toast.success(ToastSuccess.REMOVE_FROM_HISTORY);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.REMOVE_FROM_HISTORY);
+    } finally {
+      loader.stop();
     }
   };
 
   const clearHistoryRequest = async () => {
+    loader.start();
     try {
       const { status } = await api.clearHistory();
       if (status !== 200) return;
       syncHistoryWithServer();
+      toast.success(ToastSuccess.CLEAR_HISTORY);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.CLEAR_HISTORY);
+    } finally {
+      loader.stop();
     }
   };
 

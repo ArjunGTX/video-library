@@ -12,11 +12,13 @@ import { getArray } from "../../util/helper";
 import * as api from "../../model/api";
 import { Playlist } from "../../model/type";
 import { BsTrashFill } from "react-icons/bs";
-import { usePlaylist } from "../../context";
-import { Path } from "../../util/constant";
+import { useLoader, usePlaylist } from "../../context";
+import { Path, ToastError, ToastSuccess } from "../../util/constant";
 import { HiPlus } from "react-icons/hi";
+import toast from "react-hot-toast";
 
 export const PlaylistInfo = () => {
+  const loader = useLoader();
   const navigate = useNavigate();
   const { playlistId } = useParams();
   const { syncPlaylistWithServer } = usePlaylist();
@@ -46,25 +48,33 @@ export const PlaylistInfo = () => {
 
   const removeFromPlaylistRequest = async (videoId: string) => {
     if (!playlistId) return;
+    loader.start();
     try {
       const { status } = await api.removeFromPlaylist(playlistId, videoId);
       if (status !== 200) return;
       syncPlaylistWithServer();
       getPlaylistInfoRequest(true);
+      toast.success(ToastSuccess.REMOVE_FROM_PLAYLIST);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.REMOVE_FROM_PLAYLIST);
+    } finally {
+      loader.stop();
     }
   };
 
   const deletePlaylistRequest = async () => {
     if (!playlistId) return;
+    loader.start();
     try {
       const { status } = await api.deletePlaylist(playlistId);
       if (status !== 200) return;
       syncPlaylistWithServer();
       navigate(Path.PLAYLIST);
+      toast.success(ToastSuccess.PLAYLIST_DELETE);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.PLAYLIST_DELETE);
+    } finally {
+      loader.stop();
     }
   };
 

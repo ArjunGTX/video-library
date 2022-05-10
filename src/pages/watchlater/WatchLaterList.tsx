@@ -1,12 +1,15 @@
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsTrashFill } from "react-icons/bs";
 import { SkeletonVideoCard, VideoCard } from "../../components";
-import { useWatchLater } from "../../context";
+import { useLoader, useWatchLater } from "../../context";
 import { getArray } from "../../util/helper";
 import * as api from "../../model/api";
+import toast from "react-hot-toast";
+import { ToastError, ToastSuccess } from "../../util/constant";
 
 export const WatchLaterList = () => {
+  const loader = useLoader();
   const { watchLater, loading, syncWatchLaterWithServer } = useWatchLater();
 
   useEffect(() => {
@@ -16,12 +19,16 @@ export const WatchLaterList = () => {
   }, [watchLater]);
 
   const removeFromWatchLaterRequest = async (videoId: string) => {
+    loader.start();
     try {
       const { status } = await api.removeFromWatchLater(videoId);
       if (status !== 200) return;
       syncWatchLaterWithServer();
+      toast.success(ToastSuccess.REMOVE_FROM_WATCH_LATER);
     } catch (error) {
-      console.error(error);
+      toast.error(ToastError.REMOVE_FROM_WATCH_LATER);
+    } finally {
+      loader.stop();
     }
   };
 

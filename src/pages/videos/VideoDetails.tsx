@@ -71,7 +71,7 @@ export const VideoDetails = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
               allowFullScreen
             ></iframe>
-            <div className="fc-fs-fs p-xl">
+            <div className="fc-fs-fs p-xl full-width">
               <div className="fr-sb-fs full-width">
                 <h5 className="txt-lg mr-md">{videoInfo.title}</h5>
                 <VideoActions

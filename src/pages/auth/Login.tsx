@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Logo, TextInput } from "../../components";
-import { Constant, GuestUser, Path } from "../../util/constant";
+import {
+  Constant,
+  GuestUser,
+  Path,
+  ToastError,
+  ToastSuccess,
+} from "../../util/constant";
 import * as api from "../../model/api";
 import * as validate from "../../util/validator";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useAuth } from "../../context";
+import { useAuth, useLoader } from "../../context";
 import { To, useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Login = () => {
   const { auth, setAuth } = useAuth();
+  const loader = useLoader();
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as { from: To };
@@ -18,7 +26,6 @@ export const Login = () => {
       : state.from
     : null;
 
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
     email: "",
@@ -44,7 +51,7 @@ export const Login = () => {
       setInputErrors(errors);
       return;
     }
-    setLoading(true);
+    loader.start();
     try {
       const { data, status } = await api.login(email, password);
       if (status !== 200) return;
@@ -62,10 +69,11 @@ export const Login = () => {
       } else {
         navigate(-1);
       }
+      toast.success(ToastSuccess.LOGIN);
     } catch (error) {
-      console.log(error);
+      toast.error(ToastError.LOGIN);
     } finally {
-      setLoading(false);
+      loader.stop();
     }
   };
 
