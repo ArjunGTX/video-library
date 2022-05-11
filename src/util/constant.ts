@@ -15,6 +15,7 @@ export enum Path {
   HISTORY = "/history",
   WATCH_LATER = "/watch-later",
   LIKES = "/likes",
+  PROFILE = "/profile",
 }
 
 export enum GuestUser {

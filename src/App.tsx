@@ -12,6 +12,7 @@ import {
   VideoDetails,
   VideoList,
   WatchLaterList,
+  Profile,
 } from "./pages";
 import { Path } from "./util/constant";
 
@@ -74,6 +75,14 @@ export const App = () => {
         element={
           <PageWrapper requiresAuth>
             <PlaylistInfo />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={`${Path.PROFILE}`}
+        element={
+          <PageWrapper requiresAuth>
+            <Profile />
           </PageWrapper>
         }
       />
