@@ -8,7 +8,6 @@ export interface Auth {
 }
 
 export interface User {
-  id: string;
   _id: string;
   createdAt: string;
   email: string;
@@ -29,4 +28,8 @@ export interface LoginResponse {
 export interface SignUpResponse {
   encodedToken: string;
   createdUser: User;
+}
+
+export interface GetUserInfoResponse {
+  user: User;
 }

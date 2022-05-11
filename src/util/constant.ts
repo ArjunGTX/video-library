@@ -93,4 +93,5 @@ export enum ToastError {
   REMOVE_FROM_WATCH_LATER = "Could not remove video from Watch later, Please try again",
   LIKE = "Could not like video, Please try again",
   UNLIKE = "Could not unlike video, Please try again",
+  GENERAL = "Something went wrong!",
 }

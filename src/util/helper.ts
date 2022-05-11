@@ -31,3 +31,6 @@ export const getFilteredVideos = (videos: Video[], filter: Filter): Video[] => {
   if (filter === "all") return videos;
   return videos.filter((video) => video.category === filter);
 };
+
+export const getFormattedDate = (date: string) =>
+  new Date(date).toDateString().toUpperCase();

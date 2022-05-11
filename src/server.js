@@ -121,7 +121,7 @@ export function makeServer({ environment = "development" } = {}) {
       );
       this.delete("/user/history/all", clearHistoryHandler.bind(this));
 
-      this.get("/user", getUserInfoHandler.bind(this))
+      this.get("/user", getUserInfoHandler.bind(this));
     },
   });
 }
