@@ -38,6 +38,7 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
+import { getUserInfoHandler } from "./backend/controllers/UserController";
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -119,6 +120,8 @@ export function makeServer({ environment = "development" } = {}) {
         removeVideoFromHistoryHandler.bind(this)
       );
       this.delete("/user/history/all", clearHistoryHandler.bind(this));
+
+      this.get("/user", getUserInfoHandler.bind(this));
     },
   });
 }

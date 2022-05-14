@@ -1,5 +1,5 @@
 import * as api from ".";
-import { LoginResponse, SignUpResponse } from "../type";
+import { GetUserInfoResponse, LoginResponse, SignUpResponse } from "../type";
 
 export const login = async (email: string, password: string) =>
   await api.axiosPost<LoginResponse>("/api/auth/login", false, {
@@ -19,3 +19,6 @@ export const signUp = async (
     email,
     password,
   });
+
+export const getUserInfo = async () =>
+  await api.axiosGet<GetUserInfoResponse>("/api/user", true);
