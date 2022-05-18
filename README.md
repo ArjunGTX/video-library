@@ -13,8 +13,10 @@ Motor Cycle Madness!
 - Playlist
 - Watchlater
 - History
-- Skeleton Loading Screens
 - Search Videos
+- Filter by Category
+- Sort By Latest/Oldest
+- Skeleton Loading Screens
 - Responsive Design
 - Mobile First Approach
 
