@@ -3,7 +3,43 @@ kind: Pipeline
 name: Default
 services: []
 steps:
-  - name: New Node
+  - name: Install Dependency
     image: node:latest
     commands:
       - npm install
+  - name: Prettier
+    image: node:latest
+    commands:
+      - npm run pretty
+    next: Is Production
+  - name: LInter
+    image: node:latest
+    commands:
+      - npm run lint
+    next: Build Code
+  - name: Build Code
+    image: node:latest
+    commands:
+      - npm run build
+  - name: Tests
+    image: node:latest
+    commands:
+      - npm run test
+  - name: Is Production
+    when:
+      branch:
+        - master
+      event:
+        - commit
+        - pull
+    then: LInter
+    else: Is Develop
+  - name: Is Develop
+    when:
+      branch:
+        - develop
+      event:
+        - commit
+        - pull
+    then: Install Dependency
+    else: Tests
