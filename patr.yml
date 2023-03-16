@@ -1,1 +1,9 @@
-eyJ2ZXJzaW9uIjoidjAiLCJraW5kIjoiUGlwZWxpbmUiLCJuYW1lIjoiRGVmYXVsdCIsInNlcnZpY2VzIjpbXSwic3RlcHMiOlt7Im5hbWUiOiJOZXcgTm9kZSIsImltYWdlIjoibm9kZTpsYXRlc3QiLCJjb21tYW5kcyI6WyJucG0gaW5zdGFsbCJdfV19
+version: v0
+kind: Pipeline
+name: Default
+services: []
+steps:
+  - name: New Node
+    image: node:latest
+    commands:
+      - npm install
