@@ -3,43 +3,25 @@ kind: Pipeline
 name: Default
 services: []
 steps:
-  - name: Install Dependency
+  - name: Install Dependencies
     image: node:latest
     commands:
       - npm install
-  - name: Prettier
-    image: node:latest
-    commands:
-      - npm run pretty
-    next: Is Production
-  - name: LInter
-    image: node:latest
-    commands:
-      - npm run lint
     next: Build Code
   - name: Build Code
     image: node:latest
     commands:
       - npm run build
-  - name: Tests
-    image: node:latest
+    next: Publish on Patr
+  - name: Publish on Patr
+    image: patrcloud/cli:latest
     commands:
-      - npm run test
-  - name: Is Production
-    when:
-      branch:
-        - master
-      event:
-        - commit
-        - pull
-    then: LInter
-    else: Is Develop
-  - name: Is Develop
-    when:
-      branch:
-        - develop
-      event:
-        - commit
-        - pull
-    then: Install Dependency
-    else: Tests
+      - patr login -u "$USERNAME" -p "$PASSWORD"
+      - patr workspace switch "$WORKSPACE_ID"
+      - patr site upload --site ./build "Video Library" --msg
+        "$PATR_CI_COMMIT_MESSAGE"
+    environment:
+      USERNAME: samyak-gangwal
+      PASSWORD:
+        from_secret: PATR_PASSWORD
+      WORKSPACE_ID: 3ccdc5c22dc04fd08c37e6fa797ab0f4
