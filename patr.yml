@@ -11,6 +11,7 @@ steps:
   - name: Build Code
     image: node:latest
     commands:
+      - npm install sass
       - npm run build
     next: Publish on Patr
   - name: Publish on Patr
